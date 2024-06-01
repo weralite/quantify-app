@@ -9,13 +9,16 @@ const TestSection = () => {
   const [selectedWidth, setSelectedWidth] = React.useState('120');
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
+  const [increasedResult, setIncreasedResult] = React.useState(0);
 
   const screenWidth = Dimensions.get('window').width;
 
   const calculateResult = () => {
     const selectedWidthInMeters = 1000 / parseInt(selectedWidth);
     const calculatedResult = selectedWidthInMeters * parseFloat(area);
+    const resultWithMargin = calculatedResult * 1.10;
     setResult(calculatedResult.toFixed(2));
+    setIncreasedResult(resultWithMargin.toFixed(2));
   };
 
   const handleAreaChange = (newArea) => {
@@ -40,14 +43,15 @@ const TestSection = () => {
     <View style={[styles.sectionContainer]}>
 
       <View>
-        <Text style={[styles.sectionHeader]}>Headline</Text>
-        <Text style={[styles.sectionContent]}>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</Text>
+        <Text style={[styles.sectionHeader]}>Trall</Text>
+        <Text style={[styles.sectionContent]}>Ange ytan som ska täckas och virkets bredd.</Text>
       </View>
 
 
       <View style={[styles.inputContainer]}>
 
         <InputField
+          style={{ width: screenWidth * 0.20 }}
           placeholder="M2"
           onChangeText={handleAreaChange}
           value={area}
@@ -58,23 +62,23 @@ const TestSection = () => {
         <View style={{ height: 40, justifyContent: 'center', borderWidth: 1, borderColor: 'gray' }}>
           <Picker
             selectedValue={selectedWidth}
-            style={{ width: screenWidth * 0.33 }}
+            style={{ width: screenWidth * 0.35 }}
             onValueChange={handleSelectedWidthChange}>
 
-            <Picker.Item label="95 mm" value="95" />
-            <Picker.Item label="120 mm" value="120" />
-            <Picker.Item label="145 mm" value="145" />
+            <Picker.Item label="95mm" value="95" />
+            <Picker.Item label="120mm" value="120" />
+            <Picker.Item label="145mm" value="145" />
 
           </Picker>
         </View>
 
-        <SubmitButton title="Submit" onPress={handleSubmit} />
+        <SubmitButton buttonWidth={screenWidth * 0.20} title="Submit" onPress={handleSubmit} />
 
       </View>
 
       {result !== 0 && (
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Text>Result: {result} LPM</Text>
+          <Text>Du behöver {increasedResult} LPM inkl 10% marginal, ({result} LPM exkl marginal)</Text>
           <ExitButton title="X" onPress={handleReset} />
         </View>
       )}
@@ -88,7 +92,7 @@ const styles = StyleSheet.create({
   sectionContainer: {
     display: 'flex',
     flexDirection: 'column',
-    padding: 20,
+    padding: 15,
   },
   sectionHeader: {
     fontSize: 20,
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     display: 'flex',
     flexDirection: 'row',
-    width: '90%',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 })
