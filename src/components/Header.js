@@ -4,7 +4,7 @@ import React from 'react';
 const Header = () => {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerText}>QUANT</Text>
+      <Text style={styles.headerText}>QUANTIFY</Text>
     </View>
   );
 }
@@ -13,8 +13,7 @@ export default Header;
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: '#FFF',
-    padding: 15,
+    padding: 10,
     height: 100,
     display: 'flex',
     justifyContent: 'center',
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
   headerText: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 26,
+    fontSize: 36,
     textAlign: 'left',
   },
 });

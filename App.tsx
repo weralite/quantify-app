@@ -2,17 +2,19 @@ import 'react-native-gesture-handler';
 import 'react-native-screens';
 import React from 'react';
 import { enableScreens } from 'react-native-screens'
-import { Button, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Button, SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Header from './components/Header'; // Import your Header component
-import Menu from './components/Menu'; // Import your Menu component
+import Header from './src/components/Header'; // Import your Header component
+import MenuButton from './src/components/buttons/MenuButton';
+import InputField from './src/components/inputs/InputField';
+import QuantTest from './src/screens/Test';
 
 enableScreens();
 const Stack = createStackNavigator();
 
-function MenuScreen({ navigation }: { navigation: any }) {
+function HomeScreen({ navigation }: { navigation: any }) {
   const backgroundStyle = {
     backgroundColor: Colors.lighter,
   };
@@ -23,17 +25,26 @@ function MenuScreen({ navigation }: { navigation: any }) {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <Menu />
-        <Button title="Go to Details" onPress={() => navigation.navigate('Details')} />
+        <MenuButton title="TEST" onPress={() => navigation.navigate('QuantTest')} />
+        <MenuButton title="Go to Details" onPress={() => navigation.navigate('Details')} />
+        <MenuButton title="Go to Details" onPress={() => navigation.navigate('Details')} />
+        <MenuButton title="Go to Details" onPress={() => navigation.navigate('Details')} />
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 function DetailsScreen() {
+  const [value, setValue] = React.useState('');
   return (
     <SafeAreaView>
-      {/* Add your details screen content here */}
+      <Text>Details Screen</Text>
+      <InputField
+        placeholder="Enter quantity"
+        onChangeText={setValue}
+        value={value}
+        keyboardType="numeric"
+      />
     </SafeAreaView>
   );
 }
@@ -42,7 +53,13 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Menu" component={MenuScreen} />
+
+        <Stack.Screen 
+        name="Home" 
+        component={HomeScreen}
+        options={{ headerShown: false }} />
+
+        <Stack.Screen name="QuantTest" component={QuantTest} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
