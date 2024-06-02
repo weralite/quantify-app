@@ -78,7 +78,7 @@ const ConstructionElements = () => {
           </Picker>
         </View>
 
-        <SubmitButton buttonWidth={screenWidth * 0.20} title="Submit" onPress={handleSubmit} />
+        <SubmitButton buttonWidth={screenWidth * 0.20} title="Beräkna" onPress={handleSubmit} />
 
       </View>
 

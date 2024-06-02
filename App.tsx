@@ -47,7 +47,7 @@ function App() {
         component={HomeScreen}
         options={{ headerShown: false }} />
 
-        <Stack.Screen name="Notes" component={NotesScreen} />
+        <Stack.Screen name="Anteckningar" component={NotesScreen} />
 
 
         <Stack.Screen name="Virkesåtgång" component={Wood} />
