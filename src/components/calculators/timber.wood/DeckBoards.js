@@ -5,16 +5,33 @@ import SubmitButton from '../../buttons/SubmitButton'
 import ExitButton from '../../buttons/ExitButton';
 import InputField from '../../inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import usePicker from '../../UsePicker';
+import PickerComponent from '../../PickerComponent';
 
 const DeckBoards = () => {
-  const [selectedThickness, setSelectedThickness] = React.useState('28');
-  const [selectedWidth, setSelectedWidth] = React.useState('120');
-  const [selectedLength, setSelectedLength] = React.useState('4200');
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
   const [increasedResult, setIncreasedResult] = React.useState(0);
-
   const screenWidth = Dimensions.get('window').width;
+
+  const thicknessOptions = ['22', '28', '34'];
+  const widthOptions = ['95', '120', '145'];
+  const lengthOptions = ['3000', '3300', '3600', '3900', '4200', '4500', '4800', '5100', '5400'];
+
+  const {
+    selectedValue: selectedThickness,
+    handleValueChange: handleSelectedThicknessChange
+  } = usePicker(thicknessOptions[1]);
+
+  const {
+    selectedValue: selectedWidth,
+    handleValueChange: handleSelectedWidthChange
+  } = usePicker(widthOptions[1]);
+
+  const {
+    selectedValue: selectedLength,
+    handleValueChange: handleSelectedLengthChange
+  } = usePicker(lengthOptions[4]);
 
   const calculateResult = () => {
     const selectedWidthInMeters = 1000 / parseInt(selectedWidth);
@@ -26,16 +43,6 @@ const DeckBoards = () => {
 
   const handleAreaChange = (newArea) => {
     setArea(newArea);
-  };
-
-  const handleSelectedWidthChange = (newSelectedWidth) => {
-    setSelectedWidth(newSelectedWidth);
-  };
-  const handleSelectedThicknessChange = (newSelectedThickness) => {
-    setSelectedThickness(newSelectedThickness);
-  };
-  const handleSelectedLengthChange = (newSelectedLength) => {
-    setSelectedLength(newSelectedLength);
   };
 
   const handleSubmit = () => {
@@ -50,24 +57,24 @@ const DeckBoards = () => {
 
   const saveResultsToNotes = async () => {
     const notes = await AsyncStorage.getItem('notes');
-  
+
     const convertIncreasedResult = (increasedResult, selectedLength) => {
       const increasedResultInMeters = parseFloat(increasedResult);
       const selectedLengthInMeters = parseInt(selectedLength) / 1000;
       let pieces = increasedResultInMeters / selectedLengthInMeters;
-      pieces = Math.ceil(pieces); 
-      if (pieces % 2 !== 0) { 
-        pieces++; 
+      pieces = Math.ceil(pieces);
+      if (pieces % 2 !== 0) {
+        pieces++;
       }
-      return pieces; 
+      return pieces;
     };
-  
+
     const pieces = convertIncreasedResult(increasedResult, selectedLength);
-  
+
     const newNotes = notes
       ? `${notes}\n\nTrall, ${area}m² (${increasedResult} LPM, inkl 10%),\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`
       : `Trall, ${area}m² (${increasedResult} LPM, inkl 10%)\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`;
-  
+
     await AsyncStorage.setItem('notes', newNotes);
     handleReset();
   };
@@ -82,63 +89,38 @@ const DeckBoards = () => {
 
       <View style={[styles.inputRowOne]}>
 
-        <View style={{ height: 40, justifyContent: 'center', borderWidth: 1, borderColor: 'gray' }}>
-          <Picker
-            selectedValue={selectedThickness}
-            style={{ width: screenWidth * 0.30 }}
-            onValueChange={handleSelectedThicknessChange}>
-
-            <Picker.Item label="22" value="22" />
-            <Picker.Item label="28" value="28" />
-            <Picker.Item label="34" value="34" />
-
-          </Picker>
-        </View>
-
-        <View style={{ height: 40, justifyContent: 'center', borderWidth: 1, borderColor: 'gray' }}>
-          <Picker
-            selectedValue={selectedWidth}
-            style={{ width: screenWidth * 0.35 }}
-            onValueChange={handleSelectedWidthChange}>
-
-            <Picker.Item label="95" value="95" />
-            <Picker.Item label="120" value="120" />
-            <Picker.Item label="145" value="145" />
-
-          </Picker>
-        </View>
+        <PickerComponent
+          selectedValue={selectedThickness}
+          onValueChange={handleSelectedThicknessChange}
+          items={thicknessOptions}
+          style={{ width: '35%' }}
+        />
+        <PickerComponent
+          selectedValue={selectedWidth}
+          onValueChange={handleSelectedWidthChange}
+          items={widthOptions}
+          style={{ width: '35%' }}
+        />
 
       </View>
 
       <View style={[styles.inputRowTwo]}>
 
-        <View style={{ height: 40, justifyContent: 'center', borderWidth: 1, borderColor: 'gray' }}>
-          <Picker
-            selectedValue={selectedLength}
-            style={{ width: screenWidth * 0.45 }}
-            onValueChange={handleSelectedLengthChange}>
-
-            <Picker.Item label="3000" value="3000" />
-            <Picker.Item label="3300" value="3300" />
-            <Picker.Item label="3600" value="3600" />
-            <Picker.Item label="3900" value="3900" />
-            <Picker.Item label="4200" value="4200" />
-            <Picker.Item label="4500" value="4500" />
-            <Picker.Item label="4800" value="4800" />
-            <Picker.Item label="5100" value="5100" />
-            <Picker.Item label="5400" value="5400" />
-          </Picker>
-
-        </View>
+        <PickerComponent
+          selectedValue={selectedLength}
+          onValueChange={handleSelectedLengthChange}
+          items={lengthOptions}
+          style={{ width: '35%' }}
+        />
 
         <InputField
-          style={{ width: screenWidth * 0.20 }}
+          style={{ width: '35%' }}
           placeholder="M2"
           onChangeText={handleAreaChange}
           value={area}
           keyboardType="numeric" />
 
-        <SubmitButton buttonWidth={screenWidth * 0.20} title="Beräkna" onPress={handleSubmit} />
+        <SubmitButton buttonWidth={95} title="Beräkna" onPress={handleSubmit} />
 
       </View>
 
@@ -180,13 +162,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginBottom: 10,
-    gap: 8,
+    gap: 10,
   },
   inputRowTwo: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+    gap: 10,
   },
   buttonContainer: {
     display: 'flex',
