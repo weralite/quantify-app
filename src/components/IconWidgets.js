@@ -8,7 +8,7 @@ const IconWidgets = ({ navigation }) => {
     return (
         <View style={[styles.iconsContainer]}>
             <NoteBookIcon width={100} height={100} onPress={() => navigation.navigate('Anteckningar')}  />
-            <BlueBookIcon width={100} height={100} />
+            {/* <BlueBookIcon width={100} height={100} /> */}
         </View>
     )
 }

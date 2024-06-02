@@ -4,6 +4,7 @@ import React from 'react'
 import SubmitButton from '../../buttons/SubmitButton'
 import ExitButton from '../../buttons/ExitButton';
 import InputField from '../../inputs/InputField'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DeckBoards = () => {
   const [selectedWidth, setSelectedWidth] = React.useState('120');
@@ -37,6 +38,14 @@ const DeckBoards = () => {
 
   const handleReset = () => {
     setResult(0);
+  };
+
+  const saveResultsToNotes = async () => {
+    const notes = await AsyncStorage.getItem('notes');
+    const newNotes = notes ? `${notes}\n
+    ${increasedResult} LPM (inkl 10%), ${selectedWidth}mm` : `
+    ${increasedResult} LPM (inkl 10%), ${selectedWidth}mm`;
+    await AsyncStorage.setItem('notes', newNotes);
   };
 
   return (
@@ -77,9 +86,12 @@ const DeckBoards = () => {
       </View>
 
       {result !== 0 && (
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ flexDirection: 'column', alignItems: 'center' }}>
           <Text>Du behöver {increasedResult} LPM inkl 10% marginal, ({result} LPM exkl marginal)</Text>
-          <ExitButton title="X" onPress={handleReset} />
+          <View style={[styles.buttonContainer]}>
+          <Button title="Spara" onPress={saveResultsToNotes} />
+          <Button title="Avbryt" onPress={handleReset} />
+          </View>
         </View>
       )}
     </View>
@@ -110,5 +122,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+gap: 10,
+    alignItems: 'center',
+    margin: 10,
   },
 })
