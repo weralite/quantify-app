@@ -82,7 +82,7 @@ const DeckBoards = () => {
         <View style={{ height: 40, justifyContent: 'center', borderWidth: 1, borderColor: 'gray' }}>
           <Picker
             selectedValue={selectedWidth}
-            style={{ width: screenWidth * 0.36 }}
+            style={{ width: screenWidth * 0.35 }}
             onValueChange={handleSelectedWidthChange}>
 
             <Picker.Item label="95" value="95" />
@@ -95,15 +95,6 @@ const DeckBoards = () => {
       </View>
 
       <View style={[styles.inputRowTwo]}>
-
-        <InputField
-          style={{ width: screenWidth * 0.20 }}
-          placeholder="M2"
-          onChangeText={handleAreaChange}
-          value={area}
-          keyboardType="numeric" />
-
-
 
         <View style={{ height: 40, justifyContent: 'center', borderWidth: 1, borderColor: 'gray' }}>
           <Picker
@@ -120,10 +111,16 @@ const DeckBoards = () => {
             <Picker.Item label="4800" value="4800" />
             <Picker.Item label="5100" value="5100" />
             <Picker.Item label="5400" value="5400" />
-  
-
           </Picker>
+
         </View>
+
+        <InputField
+          style={{ width: screenWidth * 0.20 }}
+          placeholder="M2"
+          onChangeText={handleAreaChange}
+          value={area}
+          keyboardType="numeric" />
 
         <SubmitButton buttonWidth={screenWidth * 0.20} title="Beräkna" onPress={handleSubmit} />
 
@@ -167,7 +164,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginBottom: 10,
-    gap: 9,
+    gap: 8,
   },
   inputRowTwo: {
     display: 'flex',
