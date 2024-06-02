@@ -31,6 +31,12 @@ const DeckBoards = () => {
   const handleSelectedWidthChange = (newSelectedWidth) => {
     setSelectedWidth(newSelectedWidth);
   };
+  const handleSelectedThicknessChange = (newSelectedThickness) => {
+    setSelectedThickness(newSelectedThickness);
+  };
+  const handleSelectedLengthChange = (newSelectedLength) => {
+    setSelectedLength(newSelectedLength);
+  };
 
   const handleSubmit = () => {
     if (area !== '') {
@@ -45,8 +51,8 @@ const DeckBoards = () => {
   const saveResultsToNotes = async () => {
     const notes = await AsyncStorage.getItem('notes');
     const newNotes = notes
-      ? `${notes}\n\nTrall\n${increasedResult} LPM (inkl 10%), ${selectedWidth}mm`
-      : `Trall\n${increasedResult} LPM (inkl 10%), ${selectedWidth}mm`;
+      ? `${notes}\n\nTrall, ${area}m2\n${increasedResult} LPM (inkl 10%), ${selectedThickness}x${selectedWidth}x${selectedLength}mm`
+      : `Trall, ${area}m2\n${increasedResult} LPM (inkl 10%), ${selectedThickness}x${selectedWidth}x${selectedLength}mm`;
     await AsyncStorage.setItem('notes', newNotes);
   };
 
@@ -64,7 +70,7 @@ const DeckBoards = () => {
           <Picker
             selectedValue={selectedThickness}
             style={{ width: screenWidth * 0.30 }}
-            onValueChange={handleSelectedWidthChange}>
+            onValueChange={handleSelectedThicknessChange}>
 
             <Picker.Item label="22" value="22" />
             <Picker.Item label="28" value="28" />
@@ -103,7 +109,7 @@ const DeckBoards = () => {
           <Picker
             selectedValue={selectedLength}
             style={{ width: screenWidth * 0.45 }}
-            onValueChange={handleSelectedWidthChange}>
+            onValueChange={handleSelectedLengthChange}>
 
             <Picker.Item label="3000" value="3000" />
             <Picker.Item label="3300" value="3300" />
