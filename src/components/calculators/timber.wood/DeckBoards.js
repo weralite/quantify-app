@@ -50,10 +50,26 @@ const DeckBoards = () => {
 
   const saveResultsToNotes = async () => {
     const notes = await AsyncStorage.getItem('notes');
+  
+    const convertIncreasedResult = (increasedResult, selectedLength) => {
+      const increasedResultInMeters = parseFloat(increasedResult);
+      const selectedLengthInMeters = parseInt(selectedLength) / 1000;
+      let pieces = increasedResultInMeters / selectedLengthInMeters;
+      pieces = Math.ceil(pieces); 
+      if (pieces % 2 !== 0) { 
+        pieces++; 
+      }
+      return pieces; 
+    };
+  
+    const pieces = convertIncreasedResult(increasedResult, selectedLength);
+  
     const newNotes = notes
-      ? `${notes}\n\nTrall, ${area}m2\n${increasedResult} LPM (inkl 10%), ${selectedThickness}x${selectedWidth}x${selectedLength}mm`
-      : `Trall, ${area}m2\n${increasedResult} LPM (inkl 10%), ${selectedThickness}x${selectedWidth}x${selectedLength}mm`;
+      ? `${notes}\n\nTrall, ${area}m² (${increasedResult} LPM, inkl 10%),\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`
+      : `Trall, ${area}m² (${increasedResult} LPM, inkl 10%)\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`;
+  
     await AsyncStorage.setItem('notes', newNotes);
+    handleReset();
   };
 
   return (
@@ -61,7 +77,7 @@ const DeckBoards = () => {
 
       <View>
         <Text style={[styles.sectionHeader]}>Trall</Text>
-        <Text style={[styles.sectionContent]}>Ange ytan som ska täckas och virkets dimension.</Text>
+        <Text style={[styles.sectionContent]}>Ange virkets dimensioner och ytan som ska täckas.</Text>
       </View>
 
       <View style={[styles.inputRowOne]}>

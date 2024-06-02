@@ -6,7 +6,8 @@ const Menu = ({ navigation }) => {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <MenuButton title="Virkesåtgång" onPress={() => navigation.navigate('Virkesåtgång')} />
-      <MenuButton title="Go to Details" onPress={() => navigation.navigate('Details')} />
+      <MenuButton title="empty" onPress={() => navigation.navigate('Details')} />
+
     </ScrollView>
   );
 };

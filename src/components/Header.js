@@ -9,7 +9,7 @@ const Header = () => {
 
       </View>
       <View style={styles.SubHeaderRight}>
-        <Text style={styles.headerText}>Mängdberäkna</Text>
+        <Text style={styles.headerText}>Mängdberäknare</Text>
       </View>
     </View>
   );
