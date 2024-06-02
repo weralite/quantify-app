@@ -1,10 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import Notes from '../screens/Notes';
 
 const Header = () => {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerText}>QUANTIFY</Text>
+      <View>
+
+      </View>
+      <View style={styles.SubHeaderRight}>
+        <Text style={styles.headerText}>Mängdberäkna</Text>
+      </View>
     </View>
   );
 }
@@ -13,15 +19,28 @@ export default Header;
 
 const styles = StyleSheet.create({
   headerContainer: {
-    padding: 10,
-    height: 100,
+    height: 70,
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
+
+  SubHeaderRight: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'gray',
+    width: 300,
+    height: 50,
+    borderBottomLeftRadius: 200,
+
+  },
+
   headerText: {
-    color: 'black',
+    color: '#fff',
     fontWeight: 'bold',
-    fontSize: 36,
+    fontSize: 26,
     textAlign: 'left',
   },
 });

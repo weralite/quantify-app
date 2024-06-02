@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Dimensions, Button } from 'react-native'
 import { Picker } from '@react-native-picker/picker';
 import React from 'react'
-import SubmitButton from '../buttons/SubmitButton'
-import ExitButton from '../buttons/ExitButton';
-import InputField from '../inputs/InputField'
+import SubmitButton from '../../buttons/SubmitButton'
+import ExitButton from '../../buttons/ExitButton';
+import InputField from '../../inputs/InputField'
 
-const TestSection = () => {
+const DeckBoards = () => {
   const [selectedWidth, setSelectedWidth] = React.useState('120');
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
@@ -62,7 +62,7 @@ const TestSection = () => {
         <View style={{ height: 40, justifyContent: 'center', borderWidth: 1, borderColor: 'gray' }}>
           <Picker
             selectedValue={selectedWidth}
-            style={{ width: screenWidth * 0.35 }}
+            style={{ width: screenWidth * 0.45 }}
             onValueChange={handleSelectedWidthChange}>
 
             <Picker.Item label="95mm" value="95" />
@@ -86,7 +86,7 @@ const TestSection = () => {
   )
 }
 
-export default TestSection
+export default DeckBoards
 
 const styles = StyleSheet.create({
   sectionContainer: {
