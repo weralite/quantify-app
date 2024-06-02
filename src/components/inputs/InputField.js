@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    marginRight: 5,
     textAlign: 'center',
   },
 });

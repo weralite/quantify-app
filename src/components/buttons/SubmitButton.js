@@ -13,14 +13,16 @@ export default SubmitButton;
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    padding: 10,
-    backgroundColor: "#FFD700", 
+    height: 40,
+    backgroundColor: "#FFD700",
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'gray'
   },
   buttonText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#000', 
+    color: '#000',
   },
 });

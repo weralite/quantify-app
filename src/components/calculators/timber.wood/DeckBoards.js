@@ -1,8 +1,6 @@
-import { StyleSheet, Text, View, Dimensions, Button } from 'react-native'
-import { Picker } from '@react-native-picker/picker';
+import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import SubmitButton from '../../buttons/SubmitButton'
-import ExitButton from '../../buttons/ExitButton';
 import InputField from '../../inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../UsePicker';
@@ -12,7 +10,6 @@ const DeckBoards = () => {
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
   const [increasedResult, setIncreasedResult] = React.useState(0);
-  const screenWidth = Dimensions.get('window').width;
 
   const thicknessOptions = ['22', '28', '34'];
   const widthOptions = ['95', '120', '145'];
@@ -80,9 +77,9 @@ const DeckBoards = () => {
   };
 
   return (
-    <View style={[styles.sectionContainer]}>
+    <View style={[styles.componentBox]}>
 
-      <View>
+      <View style={[styles.sectionWrapper]}>
         <Text style={[styles.sectionHeader]}>Trall</Text>
         <Text style={[styles.sectionContent]}>Ange virkets dimensioner och ytan som ska täckas.</Text>
       </View>
@@ -93,43 +90,46 @@ const DeckBoards = () => {
           selectedValue={selectedThickness}
           onValueChange={handleSelectedThicknessChange}
           items={thicknessOptions}
-          style={{ width: '35%' }}
+          style={{ width: '33%' }}
         />
         <PickerComponent
           selectedValue={selectedWidth}
           onValueChange={handleSelectedWidthChange}
           items={widthOptions}
-          style={{ width: '35%' }}
+          style={{ width: '33%' }}
+        />
+
+        <PickerComponent
+          selectedValue={selectedLength}
+          onValueChange={handleSelectedLengthChange}
+          items={lengthOptions}
+          style={{ width: '33%' }}
         />
 
       </View>
 
       <View style={[styles.inputRowTwo]}>
 
-        <PickerComponent
-          selectedValue={selectedLength}
-          onValueChange={handleSelectedLengthChange}
-          items={lengthOptions}
-          style={{ width: '35%' }}
-        />
-
         <InputField
-          style={{ width: '35%' }}
+          style={{ width: '33%' }}
           placeholder="M2"
           onChangeText={handleAreaChange}
           value={area}
           keyboardType="numeric" />
 
-        <SubmitButton buttonWidth={95} title="Beräkna" onPress={handleSubmit} />
+        <SubmitButton
+          buttonWidth='33%'
+          title="Beräkna"
+          onPress={handleSubmit} />
 
       </View>
 
       {result !== 0 && (
-        <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+        <View style={[styles.resultCard]}>
           <Text>Du behöver {increasedResult} LPM inkl 10% marginal, ({result} LPM exkl marginal)</Text>
           <View style={[styles.buttonContainer]}>
             <Button title="Spara" onPress={saveResultsToNotes} />
-            <Button title="Avbryt" onPress={handleReset} />
+            <Button title="Stäng" onPress={handleReset} />
           </View>
         </View>
       )}
@@ -140,10 +140,19 @@ const DeckBoards = () => {
 export default DeckBoards
 
 const styles = StyleSheet.create({
-  sectionContainer: {
+  componentBox: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    padding: 15,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  sectionWrapper: {
+    width: '95%',
+    display: 'flex',
+    flexDirection: 'column',
+    marginBottom: 10,
   },
   sectionHeader: {
     fontSize: 20,
@@ -157,25 +166,38 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   inputRowOne: {
+    width: '95%',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
-    gap: 10,
+    gap: 5,
   },
   inputRowTwo: {
+    width: '95%',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    gap: 10,
+    gap: 5,
+  },
+
+  resultCard: {
+    width: '95%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f9f9f9',
+    padding: 10,
+    marginTop: 10,
   },
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
     gap: 10,
     alignItems: 'center',
-    margin: 10,
+    marginTop: 10,
   },
 })
