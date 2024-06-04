@@ -79,9 +79,9 @@ const DeckBoards = () => {
   return (
     <View style={[styles.componentBox]}>
 
-      <View style={[styles.sectionWrapper]}>
-        <Text style={[styles.sectionHeader]}>Trall</Text>
-        <Text style={[styles.sectionContent]}>Ange virkets dimensioner och ytan som ska täckas.</Text>
+      <View style={[styles.headerWrapper]}>
+        <Text style={[styles.headerLine]}>Trall</Text>
+        <Text style={[styles.headerContent]}>Ange virkets dimensioner och ytan som ska täckas.</Text>
       </View>
 
       <View style={[styles.inputRowOne]}>
@@ -109,6 +109,7 @@ const DeckBoards = () => {
       </View>
 
       <View style={[styles.inputRowTwo]}>
+        
 
         <InputField
           style={{ width: '33%' }}
@@ -145,28 +146,27 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 10,
   },
 
-  sectionWrapper: {
-    width: '95%',
+  headerWrapper: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     marginBottom: 10,
   },
-  sectionHeader: {
+  headerLine: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#000',
     marginBottom: 10,
   },
-  sectionContent: {
+  headerContent: {
     fontSize: 16,
     color: '#000',
     marginBottom: 10,
   },
   inputRowOne: {
-    width: '95%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -175,10 +175,10 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   inputRowTwo: {
-    width: '95%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
     gap: 5,
   },
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f9f9f9',
     padding: 10,
-    marginTop: 10,
+    marginTop: 20,
   },
   buttonContainer: {
     display: 'flex',

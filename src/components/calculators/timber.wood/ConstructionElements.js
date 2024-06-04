@@ -85,9 +85,9 @@ const DeckBoards = () => {
   return (
     <View style={[styles.componentBox]}>
 
-      <View style={[styles.sectionWrapper]}>
-        <Text style={[styles.sectionHeader]}>Regel</Text>
-        <Text style={[styles.sectionContent]}>Ange yta och regelavstånd. Till summan löpmeter (LPM) ska
+      <View style={[styles.headerWrapper]}>
+        <Text style={[styles.headerLine]}>Regel</Text>
+        <Text style={[styles.headerContent]}>Ange yta och regelavstånd. Till summan löpmeter (LPM) ska
           längden av vald regel eller läkt
           adderas.</Text>
       </View>
@@ -160,28 +160,27 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 10,
   },
 
-  sectionWrapper: {
-    width: '95%',
+  headerWrapper: {
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     marginBottom: 10,
   },
-  sectionHeader: {
+  headerLine: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#000',
     marginBottom: 10,
   },
-  sectionContent: {
+  headerContent: {
     fontSize: 16,
     color: '#000',
     marginBottom: 10,
   },
   inputRowOne: {
-    width: '95%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -190,7 +189,7 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   inputRowTwo: {
-    width: '95%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -206,7 +205,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f9f9f9',
     padding: 10,
-    marginTop: 10,
+    marginTop: 20,
   },
   buttonContainer: {
     display: 'flex',
