@@ -10,7 +10,7 @@ import Header from './src/components/Header';
 import Menu from './src/components/Menu';
 import Wood from './src/screens/Wood';
 import NotesScreen from './src/screens/Notes';
-import IconWidgets from './src/components/IconWidgets';
+import IconHolder from './src/components/IconHolder';
 
 enableScreens();
 const Stack = createStackNavigator();
@@ -23,7 +23,7 @@ function HomeScreen({ navigation }: { navigation: any }) {
   return (
     <SafeAreaView style={backgroundStyle}>
       <Header />
-      <IconWidgets navigation={navigation} />
+      <IconHolder navigation={navigation} />
       <Menu navigation={navigation} />
     </SafeAreaView>
   );

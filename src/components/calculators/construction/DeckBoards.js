@@ -3,8 +3,8 @@ import React from 'react'
 import SubmitButton from '../../buttons/SubmitButton'
 import InputField from '../../inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import usePicker from '../../UsePicker';
-import PickerComponent from '../../PickerComponent';
+import usePicker from '../../inputs/UsePicker';
+import PickerComponent from '../../inputs/PickerComponent';
 
 const DeckBoards = () => {
   const [area, setArea] = React.useState('');
