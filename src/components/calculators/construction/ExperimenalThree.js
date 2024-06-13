@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
-import SubmitButton from '../../buttons/SubmitButton'
-import InputField from '../../inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../inputs/UsePicker';
-import PickerComponentFour from '../../inputs/PickerComponentFour';
-import ResultCard from '../../ResultCard';
+import ComponentWrapper from '../../ComponentWrapper';
 import HeaderComponent from '../../HeaderComponent';
 import DropdownSelectRow from '../../DropdownSelectRow';
 import DropdownSelectCell from '../../DropdownSelectCell';
+import InputField from '../../inputs/InputField'
+import SubmitButton from '../../buttons/SubmitButton'
+import PickerComponentFour from '../../inputs/PickerComponentFour';
+import ResultCard from '../../ResultCard';
 import CellDivider from '../../CellDivider';
 import Label from '../../DropdownSelectLabel';
 
@@ -84,7 +85,7 @@ const Experimental = () => {
   };
 
   return (
-    <View style={[styles.component]}>
+    <ComponentWrapper>
 
       <HeaderComponent
         title="Regel / Läkt"
@@ -92,10 +93,12 @@ const Experimental = () => {
       />
 
       <DropdownSelectRow>
+      
         <DropdownSelectCell>
           <CellDivider>
             <Label text="Avstånd:" />
           </CellDivider>
+
           <CellDivider>
             <PickerComponentFour
               selectedValue={selectedDistance}
@@ -111,6 +114,7 @@ const Experimental = () => {
           <CellDivider>
             <Label text="Längd:" />
           </CellDivider>
+
           <CellDivider>
             <PickerComponentFour
               selectedValue={selectedLength}
@@ -120,24 +124,26 @@ const Experimental = () => {
             />
           </CellDivider>
         </DropdownSelectCell>
+
       </DropdownSelectRow>
 
       <DropdownSelectRow>
 
-        <InputField
-          style={{ width: '50%' }}
-          placeholder="M2"
-          onChangeText={handleAreaChange}
-          value={area}
-          keyboardType="numeric" />
+        <CellDivider>
+          <InputField
+            placeholder="M2"
+            onChangeText={handleAreaChange}
+            value={area}
+            keyboardType="numeric" />
+        </CellDivider>
 
-        <SubmitButton
-          buttonWidth='50%'
-          title="Beräkna"
-          onPress={handleSubmit} />
+        <CellDivider>
+          <SubmitButton
+            title="Beräkna"
+            onPress={handleSubmit} />
+        </CellDivider>
 
       </DropdownSelectRow>
-
 
       <ResultCard
         result={result}
@@ -146,27 +152,8 @@ const Experimental = () => {
         onClose={handleReset}
         label={`Du behöver ${increasedResult} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
       />
-    </View>
+    </ComponentWrapper>
   )
 }
 
 export default Experimental
-
-const styles = StyleSheet.create({
-  component: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-
-  inputSubmitRow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 10,
-  },
-
-})

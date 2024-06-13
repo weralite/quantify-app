@@ -28,7 +28,7 @@ const CustomPicker = ({ items, selectedValue, onValueChange, label }) => {
       onValueChange(item);
       closeModal();
     }}>
-      <Text style={{ textAlign: 'center', padding: 20, fontSize: 20 }}>{item}</Text>
+      <Text style={{ textAlign: 'center', padding: 20, fontSize: 20, color: 'black', borderBottomWidth: 0.2 }}>{item}</Text>
     </TouchableOpacity>
   ), [closeModal, onValueChange]);
 
@@ -57,7 +57,7 @@ const CustomPicker = ({ items, selectedValue, onValueChange, label }) => {
           onResponderRelease={closeModal}
         >
           <TouchableOpacity
-            style={{ backgroundColor: 'white', padding: 30, borderRadius: 5, width: '80%' }}
+            style={{ backgroundColor: 'white', padding: 20, borderRadius: 0, width: '80%' }}
             activeOpacity={1}
             onStartShouldSetResponder={() => true}
           >

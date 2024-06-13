@@ -11,7 +11,7 @@ export default DropdownSelectRow;
 
 const styles = StyleSheet.create({
     dropdownSelectRow: {
-      width: '95%',
+      width: '100%',
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',

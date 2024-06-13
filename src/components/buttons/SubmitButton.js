@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFD700",
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: '#FFD700'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#000',
   },

@@ -16,10 +16,11 @@ const InputField = ({ placeholder, onChangeText, value, keyboardType, style }) =
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    fontSize: 18,
+    fontSize: 20,
     borderColor: 'gray',
     borderWidth: 1,
     textAlign: 'center',
+    padding: 0,
   },
 });
 

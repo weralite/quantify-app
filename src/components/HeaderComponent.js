@@ -3,11 +3,11 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const HeaderComponent = ({ title, description }) => {
   return (
-  <View style={styles.componentHeader}>
-    <Text style={styles.headerTitle}>{title}</Text>
-    <Text style={styles.headerDescription}>{description}</Text>
-  </View>
-);
+    <View style={styles.componentHeader}>
+      <Text style={styles.headerTitle}>{title}</Text>
+      <Text style={styles.headerDescription}>{description}</Text>
+    </View>
+  );
 };
 
 
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     marginBottom: 10,
+    marginLeft: -10,
   },
   headerTitle: {
     fontSize: 20,
