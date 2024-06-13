@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import DeckBoards from '../components/calculators/construction/DeckBoards'
 import ConstructionElements from '../components/calculators/construction/ConstructionElements'
+import Experimental from '../components/calculators/construction/Experimenal'
+import ExperimentalTwo from '../components/calculators/construction/ExperimenalTwo'
+import ExperimentalThree from '../components/calculators/construction/ExperimenalThree'
 
 const Wood = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,8 +27,11 @@ const Wood = () => {
   return (
     <ScrollView>
       <View style={[styles.screenContainer]}>
-        <DeckBoards />
-        <ConstructionElements />
+        {/* <DeckBoards /> */}
+        {/* <ConstructionElements /> */}
+        <Experimental />
+        <ExperimentalTwo />
+        <ExperimentalThree />
       </View>
     </ScrollView>
   )
