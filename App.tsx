@@ -33,7 +33,7 @@ function DetailsScreen() {
   const [value, setValue] = React.useState('');
   return (
     <SafeAreaView>
-      <Text>Details Screen</Text>
+      <Text>Placeholder</Text>
     </SafeAreaView>
   );
 }

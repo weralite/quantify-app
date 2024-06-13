@@ -5,8 +5,11 @@ import MenuButton from './buttons/MenuButton';
 const Menu = ({ navigation }) => {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <MenuButton title="Virkesåtgång" onPress={() => navigation.navigate('Virkesåtgång')} />
-      <MenuButton title="Grus / Sten" onPress={() => navigation.navigate('Details')} />
+      <MenuButton title="Infästning" onPress={() => navigation.navigate('Details')} />
+      <MenuButton title="Skivmaterial" onPress={() => navigation.navigate('Details')} />
+      <MenuButton title="Sten" onPress={() => navigation.navigate('Details')} />
+      <MenuButton title="Torrbruk" onPress={() => navigation.navigate('Details')} />
+      <MenuButton title="Virke" onPress={() => navigation.navigate('Virkesåtgång')} />
 
     </ScrollView>
   );

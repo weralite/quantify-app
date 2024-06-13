@@ -139,7 +139,6 @@ const Experimental = () => {
 
         <CellDivider>
           <SubmitButton
-            title="Beräkna"
             onPress={handleSubmit} />
         </CellDivider>
 

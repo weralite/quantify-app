@@ -4,7 +4,7 @@ import React from 'react';
 const SubmitButton = ({ title, onPress, buttonWidth }) => {
   return (
     <TouchableOpacity style={[styles.buttonContainer, { width: buttonWidth }]} onPress={onPress}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text style={styles.buttonText}>Beräkna</Text>
     </TouchableOpacity>
   );
 }
