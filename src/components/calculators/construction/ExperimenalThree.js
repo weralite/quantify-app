@@ -4,35 +4,28 @@ import SubmitButton from '../../buttons/SubmitButton'
 import InputField from '../../inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../inputs/UsePicker';
-import PickerComponent from '../../inputs/PickerComponent';
-import PickerComponentTwo from '../../inputs/PickerComponentTwo';
-import PickerComponentThree from '../../inputs/PickerComponentThree';
 import PickerComponentFour from '../../inputs/PickerComponentFour';
+import ResultCard from '../../ResultCard';
+import HeaderComponent from '../../HeaderComponent';
+import DropdownSelectRow from '../../DropdownSelectRow';
+import DropdownSelectCell from '../../DropdownSelectCell';
+import CellDivider from '../../CellDivider';
+import Label from '../../DropdownSelectLabel';
 
 const Experimental = () => {
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
   const [increasedResult, setIncreasedResult] = React.useState(0);
 
-  const thicknessOptions = ['45'];
-  const widthOptions = ['45', '70', '95', '120', '145'];
   const lengthOptions = [
-    '3000', '3300', '3600', '3900', '4200', '4500', '4800', '5100', '5400'
+    '2500', '2700', '3000', '3300', '3600', '3900', '4200', '4500', '4800', '5100', '5400'
   ];
 
   const distanceOptions = [
     '200', '400', '450', '600', '900'
   ];
 
-  const {
-    selectedValue: selectedThickness,
-    handleValueChange: handleSelectedThicknessChange
-  } = usePicker(thicknessOptions[0]);
-
-  const {
-    selectedValue: selectedWidth,
-    handleValueChange: handleSelectedWidthChange
-  } = usePicker(widthOptions[1]);
+  const selectedThickness = '45';
 
   const {
     selectedValue: selectedLength,
@@ -42,10 +35,10 @@ const Experimental = () => {
   const {
     selectedValue: selectedDistance,
     handleValueChange: handleSelectedDistanceChange
-  } = usePicker(distanceOptions[4]);
+  } = usePicker(distanceOptions[3]);
 
   const calculateResult = () => {
-    const UsageInMeters = 1000 / parseInt(selectedWidth);
+    const UsageInMeters = 1000 / parseInt(selectedThickness);
     const calculatedResult = UsageInMeters * parseFloat(area);
     const resultWithMargin = calculatedResult * 1.10;
     setResult(calculatedResult.toFixed(2));
@@ -83,83 +76,76 @@ const Experimental = () => {
     const pieces = convertIncreasedResult(increasedResult, selectedLength);
 
     const newNotes = notes
-      ? `${notes}\n\nTrall, ${area}m² (${increasedResult} LPM, inkl 10%),\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`
-      : `Trall, ${area}m² (${increasedResult} LPM, inkl 10%)\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`;
+      ? `${notes}\n\nKonstruktion, ${area}m² (${increasedResult} LPM, inkl 10%),\n${pieces} ST, x${selectedLength}mm`
+      : `Trall, ${area}m² (${increasedResult} LPM, inkl 10%)\n${pieces} ST, ${selectedLength}mm`;
 
     await AsyncStorage.setItem('notes', newNotes);
     handleReset();
   };
 
   return (
-    <View style={[styles.componentBox]}>
+    <View style={[styles.component]}>
 
-      <View style={[styles.headerWrapper]}>
-        <Text style={[styles.headerLine]}>Regel</Text>
-        <Text style={[styles.headerContent]}>Ange yta och regelavstånd. Till summan löpmeter (LPM) ska
-          längden av vald regel eller läkt
-          adderas.</Text>
-      </View>
+      <HeaderComponent
+        title="Regel / Läkt"
+        description="Ange yta och regelavstånd. Till summan löpmeter (LPM) ska längden av vald regel eller läkt adderas."
+      />
 
-      <View style={[styles.inputRowOne]}>
-        <View style={[styles.pickerBox]}>
-        <View style={{ width: '50%'}}>
-          <Text style={{ marginLeft: 10, fontSize: 20, }}>
-            Avstånd:
-          </Text>
-          </View>
-          <View  style={{ width: '50%' }}>
-          <PickerComponentFour
-            selectedValue={selectedDistance}
-            onValueChange={handleSelectedDistanceChange}
-            items={distanceOptions}
-          />
-          </View>
-        </View>
+      <DropdownSelectRow>
+        <DropdownSelectCell>
+          <CellDivider>
+            <Label text="Avstånd:" />
+          </CellDivider>
+          <CellDivider>
+            <PickerComponentFour
+              selectedValue={selectedDistance}
+              onValueChange={handleSelectedDistanceChange}
+              items={distanceOptions}
+              label="Ange cc-avstånd"
+            />
+          </CellDivider>
+        </DropdownSelectCell>
 
-        <View style={[styles.pickerBox]}>
-          <View style={{ width: '50%'}}>
-            <Text style={{ marginLeft: 10, fontSize: 20, }}>
 
-              Längd:
-            </Text>
-          </View>
-          <View  style={{ width: '50%' }}>
+        <DropdownSelectCell>
+          <CellDivider>
+            <Label text="Längd:" />
+          </CellDivider>
+          <CellDivider>
             <PickerComponentFour
               selectedValue={selectedLength}
               onValueChange={handleSelectedLengthChange}
               items={lengthOptions}
+              label="Ange virkets längd"
             />
-          </View>
-        </View>
+          </CellDivider>
+        </DropdownSelectCell>
+      </DropdownSelectRow>
 
-
-      </View>
-
-      <View style={[styles.inputRowTwo]}>
+      <DropdownSelectRow>
 
         <InputField
-          style={{ width: '33%' }}
+          style={{ width: '50%' }}
           placeholder="M2"
           onChangeText={handleAreaChange}
           value={area}
           keyboardType="numeric" />
 
         <SubmitButton
-          buttonWidth='33%'
+          buttonWidth='50%'
           title="Beräkna"
           onPress={handleSubmit} />
 
-      </View>
+      </DropdownSelectRow>
 
-      {result !== 0 && (
-        <View style={[styles.resultCard]}>
-          <Text>Du behöver {increasedResult} LPM inkl 10% marginal, ({result} LPM exkl marginal)</Text>
-          <View style={[styles.buttonContainer]}>
-            <Button title="Spara" onPress={saveResultsToNotes} />
-            <Button title="Stäng" onPress={handleReset} />
-          </View>
-        </View>
-      )}
+
+      <ResultCard
+        result={result}
+        increasedResult={increasedResult}
+        onSave={saveResultsToNotes}
+        onClose={handleReset}
+        label={`Du behöver ${increasedResult} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
+      />
     </View>
   )
 }
@@ -167,40 +153,14 @@ const Experimental = () => {
 export default Experimental
 
 const styles = StyleSheet.create({
-  componentBox: {
+  component: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
 
-  headerWrapper: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 10,
-  },
-  headerLine: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 10,
-  },
-  headerContent: {
-    fontSize: 16,
-    color: '#000',
-    marginBottom: 10,
-  },
-  inputRowOne: {
-    width: '95%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-    gap: 10,
-  },
-  inputRowTwo: {
+  inputSubmitRow: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -209,30 +169,4 @@ const styles = StyleSheet.create({
     gap: 10,
   },
 
-  pickerBox: {
-    width: '50%',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'gray'
-  },
-
-  resultCard: {
-    width: '95%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f9f9f9',
-    padding: 10,
-    marginTop: 20,
-  },
-  buttonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 10,
-    alignItems: 'center',
-    marginTop: 10,
-  },
 })

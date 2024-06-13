@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef } from 'react';
 import { View, Text, Modal, TouchableOpacity, FlatList, Animated } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const CustomPicker = ({ items, selectedValue, onValueChange }) => {
+const CustomPicker = ({ items, selectedValue, onValueChange, label }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
 
@@ -61,6 +61,7 @@ const CustomPicker = ({ items, selectedValue, onValueChange }) => {
             activeOpacity={1}
             onStartShouldSetResponder={() => true}
           >
+            <Text style={{ textAlign: 'center', padding: 10, fontSize: 20 }}>{label}</Text>
             <FlatList
               data={items}
               renderItem={renderItem}
