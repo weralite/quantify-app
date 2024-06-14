@@ -5,6 +5,14 @@ import InputField from '../../inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../inputs/UsePicker';
 import PickerComponent from '../../inputs/PickerComponent';
+import ComponentWrapper from '../../ComponentWrapper';
+import HeaderComponent from '../../HeaderComponent';
+import DropdownSelectRow from '../../DropdownSelectRow';
+import DropdownSelectCell from '../../DropdownSelectCell';
+import PickerComponentFour from '../../inputs/PickerComponentFour';
+import ResultCard from '../../ResultCard';
+import CellDivider from '../../CellDivider';
+import Label from '../../DropdownSelectLabel';
 
 const DeckBoards = () => {
   const [area, setArea] = React.useState('');
@@ -31,8 +39,8 @@ const DeckBoards = () => {
   } = usePicker(lengthOptions[4]);
 
   const calculateResult = () => {
-    const selectedWidthInMeters = 1000 / parseInt(selectedWidth);
-    const calculatedResult = selectedWidthInMeters * parseFloat(area);
+    const metersPerSquare = 1000 / parseInt(selectedWidth);
+    const calculatedResult = metersPerSquare * parseFloat(area);
     const resultWithMargin = calculatedResult * 1.10;
     setResult(calculatedResult.toFixed(2));
     setIncreasedResult(resultWithMargin.toFixed(2));
@@ -77,127 +85,75 @@ const DeckBoards = () => {
   };
 
   return (
-    <View style={[styles.componentBox]}>
+    <ComponentWrapper>
 
-      <View style={[styles.headerWrapper]}>
-        <Text style={[styles.headerLine]}>Trall</Text>
-        <Text style={[styles.headerContent]}>Ange virkets dimensioner och ytan som ska täckas.</Text>
-      </View>
+      <HeaderComponent
+        title="Trall"
+        description="Ange virkets dimensioner och ytan som ska täckas."
+      />
 
-      <View style={[styles.inputRowOne]}>
+      <DropdownSelectRow>
+        <DropdownSelectCell>
+          <CellDivider>
 
-        <PickerComponent
-          selectedValue={selectedThickness}
-          onValueChange={handleSelectedThicknessChange}
-          items={thicknessOptions}
-          style={{ width: '33%' }}
-        />
-        <PickerComponent
-          selectedValue={selectedWidth}
-          onValueChange={handleSelectedWidthChange}
-          items={widthOptions}
-          style={{ width: '33%' }}
-        />
+            <Label text="Bredd:" />
 
-        <PickerComponent
-          selectedValue={selectedLength}
-          onValueChange={handleSelectedLengthChange}
-          items={lengthOptions}
-          style={{ width: '33%' }}
-        />
+          </CellDivider>
+          <CellDivider>
 
-      </View>
+            <PickerComponentFour
+              selectedValue={selectedWidth}
+              onValueChange={handleSelectedWidthChange}
+              items={widthOptions}
+              label="Ange virkets bredd" />
 
-      <View style={[styles.inputRowTwo]}>
-        
+          </CellDivider>
+        </DropdownSelectCell>
 
-        <InputField
-          style={{ width: '33%' }}
-          placeholder="M2"
-          onChangeText={handleAreaChange}
-          value={area}
-          keyboardType="numeric" />
+        <DropdownSelectCell>
+          <CellDivider>
 
-        <SubmitButton
-          buttonWidth='33%'
-          title="Beräkna"
-          onPress={handleSubmit} />
+            <Label text="Längd:" />
 
-      </View>
+          </CellDivider>
+          <CellDivider>
 
-      {result !== 0 && (
-        <View style={[styles.resultCard]}>
-          <Text>Du behöver {increasedResult} LPM inkl 10% marginal, ({result} LPM exkl marginal)</Text>
-          <View style={[styles.buttonContainer]}>
-            <Button title="Spara" onPress={saveResultsToNotes} />
-            <Button title="Stäng" onPress={handleReset} />
-          </View>
-        </View>
-      )}
-    </View>
+            <PickerComponentFour
+              selectedValue={selectedLength}
+              onValueChange={handleSelectedLengthChange}
+              items={lengthOptions}
+              label="Ange virkets längd"/>
+
+          </CellDivider>
+        </DropdownSelectCell>
+      </DropdownSelectRow>
+
+      <DropdownSelectRow>
+        <CellDivider>
+
+          <InputField
+            placeholder="M2"
+            onChangeText={handleAreaChange}
+            value={area}
+            keyboardType="numeric" />
+
+        </CellDivider>
+        <CellDivider>
+
+          <SubmitButton onPress={handleSubmit} />
+
+        </CellDivider>
+      </DropdownSelectRow>
+
+      <ResultCard
+        result={result}
+        increasedResult={increasedResult}
+        onSave={saveResultsToNotes}
+        onClose={handleReset}
+        label={`Du behöver ${increasedResult} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
+      />
+    </ComponentWrapper>
   )
 }
 
 export default DeckBoards
-
-const styles = StyleSheet.create({
-  componentBox: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-
-  headerWrapper: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 10,
-  },
-  headerLine: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 10,
-  },
-  headerContent: {
-    fontSize: 16,
-    color: '#000',
-    marginBottom: 10,
-  },
-  inputRowOne: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-    gap: 5,
-  },
-  inputRowTwo: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 5,
-  },
-
-  resultCard: {
-    width: '95%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f9f9f9',
-    padding: 10,
-    marginTop: 20,
-  },
-  buttonContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    gap: 10,
-    alignItems: 'center',
-    marginTop: 10,
-  },
-})
