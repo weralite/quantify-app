@@ -2,10 +2,8 @@ import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native'
 import { useState, useEffect } from 'react'
 import React from 'react'
 import DeckBoards from '../components/calculators/construction/DeckBoards'
-import ConstructionElements from '../components/calculators/construction/ConstructionElements'
-import Experimental from '../components/calculators/construction/Experimenal'
-import ExperimentalTwo from '../components/calculators/construction/ExperimenalTwo'
 import ExperimentalThree from '../components/calculators/construction/ExperimenalThree'
+import Animated, { SlideInRight, SlideInLeft, SlideInUp, } from 'react-native-reanimated';
 
 const Wood = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,11 +24,13 @@ const Wood = () => {
   }
   return (
     <ScrollView>
+      <Animated.View entering={SlideInUp}>
       <View style={[styles.screenContainer]}>
         <ExperimentalThree />
         <DeckBoards />
         <ExperimentalThree />
       </View>
+      </Animated.View>
     </ScrollView>
   )
 }

@@ -1,16 +1,26 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import MenuButton from './buttons/MenuButton';
+import Animated, { SlideInRight, SlideInLeft, SlideInDown, BounceIn } from 'react-native-reanimated';
 
 const Menu = ({ navigation }) => {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <MenuButton title="Infästning" onPress={() => navigation.navigate('Details')} />
-      <MenuButton title="Skivmaterial" onPress={() => navigation.navigate('Details')} />
-      <MenuButton title="Sten" onPress={() => navigation.navigate('Details')} />
-      <MenuButton title="Torrbruk" onPress={() => navigation.navigate('Details')} />
-      <MenuButton title="Virke" onPress={() => navigation.navigate('Virkesåtgång')} />
-
+      <Animated.View entering={BounceIn}>
+        <MenuButton title="Infästning" onPress={() => navigation.navigate('Details')} />
+      </Animated.View>
+      <Animated.View entering={BounceIn}>
+        <MenuButton title="Skivmaterial" onPress={() => navigation.navigate('Details')} />
+      </Animated.View>
+      <Animated.View entering={BounceIn}>
+        <MenuButton title="Sten" onPress={() => navigation.navigate('Details')} />
+      </Animated.View>
+      <Animated.View entering={BounceIn}>
+        <MenuButton title="Torrbruk" onPress={() => navigation.navigate('Details')} />
+      </Animated.View>
+      <Animated.View entering={BounceIn}>
+        <MenuButton title="Virke" onPress={() => navigation.navigate('Virkesåtgång')} />
+      </Animated.View>
     </ScrollView>
   );
 };
