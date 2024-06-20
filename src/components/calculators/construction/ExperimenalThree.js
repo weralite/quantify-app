@@ -1,5 +1,4 @@
-import { StyleSheet, Text, View, Button } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../inputs/UsePicker';
 import ComponentWrapper from '../../ComponentWrapper';
@@ -12,11 +11,13 @@ import PickerComponentFour from '../../inputs/PickerComponentFour';
 import ResultCard from '../../ResultCard';
 import CellDivider from '../../CellDivider';
 import Label from '../../DropdownSelectLabel';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, interpolate } from 'react-native-reanimated';
 
 const Experimental = () => {
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
   const [increasedResult, setIncreasedResult] = React.useState(0);
+  const [showResultCard, setShowResultCard] = useState(false); // State for showing/hiding ResultCard
 
   const lengthOptions = [
     '2500', '2700', '3000', '3300', '3600', '3900', '4200', '4500', '4800', '5100', '5400'
@@ -44,10 +45,12 @@ const Experimental = () => {
     const resultWithMargin = calculatedResult * 1.10;
     setResult(calculatedResult.toFixed(2));
     setIncreasedResult(resultWithMargin.toFixed(2));
+    setShowResultCard(true); // Show ResultCard after calculation
   };
 
   const handleAreaChange = (newArea) => {
     setArea(newArea);
+    setShowResultCard(false); // Hide ResultCard when area changes
   };
 
   const handleSubmit = () => {
@@ -58,6 +61,7 @@ const Experimental = () => {
 
   const handleReset = () => {
     setResult(0);
+    setShowResultCard(false); // Hide ResultCard on reset
   };
 
   const saveResultsToNotes = async () => {
@@ -93,7 +97,7 @@ const Experimental = () => {
       />
 
       <DropdownSelectRow>
-      
+
         <DropdownSelectCell>
           <CellDivider>
             <Label text="Avstånd:" />
@@ -143,16 +147,17 @@ const Experimental = () => {
         </CellDivider>
 
       </DropdownSelectRow>
+        <ResultCard
+          showResultCard={showResultCard}
+          result={result}
+          increasedResult={increasedResult}
+          onSave={saveResultsToNotes}
+          onClose={handleReset}
+          label={`Du behöver ${increasedResult} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
+        />
 
-      <ResultCard
-        result={result}
-        increasedResult={increasedResult}
-        onSave={saveResultsToNotes}
-        onClose={handleReset}
-        label={`Du behöver ${increasedResult} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
-      />
     </ComponentWrapper>
   )
 }
 
-export default Experimental
+export default Experimental;

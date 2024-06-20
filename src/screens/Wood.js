@@ -27,6 +27,7 @@ const Wood = () => {
   return (
     <ScrollView>
       <View style={[styles.screenContainer]}>
+        <ExperimentalThree />
         <DeckBoards />
         <ExperimentalThree />
       </View>
