@@ -12,7 +12,7 @@ import { runOnJS } from 'react-native-reanimated';
 
 
 
-const ResultCard = ({ result, onSave, onClose, label, showResultCard }) => {
+const ResultCard = ({ result, onSave, onClose, label, showResultCard, setShowResultCard }) => {
   const anim = useSharedValue(0);
   const [hasMeasured, setHasMeasured] = useState(false);
   const targetHeight = useSharedValue(0);
@@ -38,7 +38,15 @@ const ResultCard = ({ result, onSave, onClose, label, showResultCard }) => {
       runOnJS(onClose)();
     });
   };
+
+const handleSave = () => {
+  anim.value = withTiming(0, {}, () => {
+    runOnJS(onSave)();
+  });
+};
+
   return (
+    result === 0 ? null :
     <Animated.View
       key={label}
       style={[styles.resultCard, animStyle]}
@@ -53,7 +61,7 @@ const ResultCard = ({ result, onSave, onClose, label, showResultCard }) => {
       <View style={styles.innerCard}>
           <Text>{label}</Text>
           <View style={styles.buttonContainer}>
-            <Button title="Spara" onPress={onSave} />
+            <Button title="Spara" onPress={handleSave} />
             <Button title="Stäng" onPress={handleClose} />
           </View>
           </View>
@@ -80,6 +88,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f9f9f9',
     padding: 10,
+    gap: 15,
     minHeight: 120,
   },
   buttonContainer: {

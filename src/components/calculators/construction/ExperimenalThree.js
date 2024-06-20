@@ -16,7 +16,6 @@ import Animated, { useSharedValue, useAnimatedStyle, withTiming, interpolate } f
 const Experimental = () => {
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
-  const [increasedResult, setIncreasedResult] = React.useState(0);
   const [showResultCard, setShowResultCard] = useState(false); // State for showing/hiding ResultCard
 
   const lengthOptions = [
@@ -43,8 +42,7 @@ const Experimental = () => {
     const UsageInMeters = 1000 / parseInt(selectedThickness);
     const calculatedResult = UsageInMeters * parseFloat(area);
     const resultWithMargin = calculatedResult * 1.10;
-    setResult(calculatedResult.toFixed(2));
-    setIncreasedResult(resultWithMargin.toFixed(2));
+    setResult(resultWithMargin.toFixed(2));
     setShowResultCard(true); // Show ResultCard after calculation
   };
 
@@ -67,10 +65,10 @@ const Experimental = () => {
   const saveResultsToNotes = async () => {
     const notes = await AsyncStorage.getItem('notes');
 
-    const convertIncreasedResult = (increasedResult, selectedLength) => {
-      const increasedResultInMeters = parseFloat(increasedResult);
+    const convertResult = (result, selectedLength) => {
+      const resultInMeters = parseFloat(result);
       const selectedLengthInMeters = parseInt(selectedLength) / 1000;
-      let pieces = increasedResultInMeters / selectedLengthInMeters;
+      let pieces = resultInMeters / selectedLengthInMeters;
       pieces = Math.ceil(pieces);
       if (pieces % 2 !== 0) {
         pieces++;
@@ -78,11 +76,11 @@ const Experimental = () => {
       return pieces;
     };
 
-    const pieces = convertIncreasedResult(increasedResult, selectedLength);
+    const pieces = convertResult(result, selectedLength);
 
     const newNotes = notes
-      ? `${notes}\n\nKonstruktion, ${area}m² (${increasedResult} LPM, inkl 10%),\n${pieces} ST, x${selectedLength}mm`
-      : `Trall, ${area}m² (${increasedResult} LPM, inkl 10%)\n${pieces} ST, ${selectedLength}mm`;
+      ? `${notes}\n\nKonstruktion, ${area}m² (${result} LPM, inkl 10%),\n${pieces} ST Reglar á ${selectedLength}mm`
+      : `Trall, ${area}m² (${result} LPM, inkl 10%)\n${pieces} ST, ${selectedLength}mm`;
 
     await AsyncStorage.setItem('notes', newNotes);
     handleReset();
@@ -151,10 +149,9 @@ const Experimental = () => {
           showResultCard={showResultCard}
           setShowResultCard={setShowResultCard}
           result={result}
-          increasedResult={increasedResult}
           onSave={saveResultsToNotes}
           onClose={handleReset}
-          label={`Du behöver ${increasedResult} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
+          label={`Du behöver ${result} löpmeter virke för att täcka en yta på ${area} m². Metervärdet inkluderar en marginal på 10% för spillvirke.`}
         />
 
     </ComponentWrapper>
