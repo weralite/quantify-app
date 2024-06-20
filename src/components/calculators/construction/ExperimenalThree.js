@@ -149,6 +149,7 @@ const Experimental = () => {
       </DropdownSelectRow>
         <ResultCard
           showResultCard={showResultCard}
+          setShowResultCard={setShowResultCard}
           result={result}
           increasedResult={increasedResult}
           onSave={saveResultsToNotes}

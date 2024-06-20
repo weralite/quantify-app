@@ -2,14 +2,10 @@ import React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import Animated, {
-  withCallback,
-  FadeInUp,
-  FadeOutUp,
   useSharedValue,
   useAnimatedStyle,
   interpolate,
   withTiming,
-  Easing,
   withSpring,
 } from "react-native-reanimated";
 import { runOnJS } from 'react-native-reanimated';
