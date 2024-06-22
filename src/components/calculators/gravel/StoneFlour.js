@@ -100,7 +100,7 @@ const ConstructionWoodCalculator = () => {
     <ComponentWrapper>
 
       <HeaderComponent
-        title="Makadam"
+        title="Stenmjöl"
         description="Ange stenstorlek samt mått i centimeter och beräkna önskad mängd i kubikmeter och ton."
       />
 
