@@ -15,7 +15,7 @@ import Label from '../../common/calculatorLayoutComponents/DropdownSelectLabel';
 const ConstructionWoodCalculator = () => {
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
-  const [showResultCard, setShowResultCard] = useState(false); 
+  const [showResultCard, setShowResultCard] = useState(false);
 
   const lengthOptions = [
     '2500', '2700', '3000', '3300', '3600', '3900', '4200', '4500', '4800', '5100', '5400'
@@ -25,34 +25,32 @@ const ConstructionWoodCalculator = () => {
     '200', '300', '400', '450', '500', '600', '900', '1200'
   ];
 
-  const selectedThickness = '45';
-
 
   const {
     selectedValue: selectedLength,
     handleValueChange: handleSelectedLengthChange
-  } = usePicker(lengthOptions[4]);
+  } = usePicker(lengthOptions[2]);
 
   const {
     selectedValue: selectedDistance,
     handleValueChange: handleSelectedDistanceChange
-  } = usePicker(distanceOptions[3]);
+  } = usePicker(distanceOptions[2]);
 
   const calculateResult = () => {
     const lumberRequirementPerSquareMeter = {
       '200': 5.00,
       '300': 3.33,
       '400': 2.50,
+      '450': 2.25,
       '500': 2.00,
       '600': 1.67,
-      '800': 1.25,
-      '1000': 1.00,
+      '900': 1.12,
       '1200': 0.83
     };
-  
+
 
     const requirement = lumberRequirementPerSquareMeter[selectedDistance];
-    const totalLumber = parseFloat(area) * requirement;
+    const totalLumber = requirement * parseFloat(area);
     const resultWithMargin = totalLumber * 1.10;
 
     setResult(resultWithMargin.toFixed(2));
@@ -61,7 +59,7 @@ const ConstructionWoodCalculator = () => {
 
   const handleAreaChange = (newArea) => {
     setArea(newArea);
-    setShowResultCard(false); 
+    setShowResultCard(false);
   };
 
   const handleSubmit = () => {
@@ -72,7 +70,7 @@ const ConstructionWoodCalculator = () => {
 
   const handleReset = () => {
     setResult(0);
-    setShowResultCard(false); 
+    setShowResultCard(false);
   };
 
   const saveResultsToNotes = async () => {
@@ -152,14 +150,14 @@ const ConstructionWoodCalculator = () => {
 
       </DropdownSelectRow>
 
-        <ResultCard
-          showResultCard={showResultCard}
-          setShowResultCard={setShowResultCard}
-          result={result}
-          onSave={saveResultsToNotes}
-          onClose={handleReset}
-          label={`Du behöver ${result} löpmeter virke för att täcka en yta på ${area} m². Metervärdet inkluderar en marginal på 10% för spillvirke.`}
-        />
+      <ResultCard
+        showResultCard={showResultCard}
+        setShowResultCard={setShowResultCard}
+        result={result}
+        onSave={saveResultsToNotes}
+        onClose={handleReset}
+        label={`Du behöver ${result} löpmeter virke för att täcka en yta på ${area} m². Metervärdet inkluderar en marginal på 10% för spillvirke.`}
+      />
 
     </ComponentWrapper>
   )

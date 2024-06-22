@@ -15,23 +15,22 @@ import CellDivider from '../../common/calculatorLayoutComponents/CellDivider';
 import Label from '../../common/calculatorLayoutComponents/DropdownSelectLabel';
 import UnitLabel from '../../common/labels/UnitLabel';
 import CellDividerMedium from '../../common/calculatorLayoutComponents/CellDividerMedium';
-import CellDividerLabelTwo from '../../common/calculatorLayoutComponents/CellDividerSmall';
 import CellDividerSmall from '../../common/calculatorLayoutComponents/CellDividerSmall';
 
-const ConstructionWoodCalculator = () => {
+const RockFlourCalculator = () => {
   const [height, setHeight] = React.useState('');
   const [width, setWidth] = React.useState('');
   const [length, setLength] = React.useState('');
   const [volume, setVolume] = React.useState(0);
   const [weight, setWeight] = React.useState(0);
   const [weightWithCompression, setWeightWithCompression] = React.useState(0);
-  const [result, setResult] = React.useState(0);
   const [showResultCard, setShowResultCard] = useState(false);
 
-  const selectedDensity = 1.40;
+  const densityOptions = [1.50, 1.60
+  ];
 
   const sizeOptions = [
-    '2/4', '4/8', '8/16', '16/32', '32/64'
+    '0-2', '0-4', '0-5', '0-6', '0-8'
   ];
 
   const handleHeightChange = (newHeight) => {
@@ -47,7 +46,12 @@ const ConstructionWoodCalculator = () => {
   const {
     selectedValue: selectedSize,
     handleValueChange: handleSelectedSizeChange
-  } = usePicker(sizeOptions[0]);
+  } = usePicker(sizeOptions[1]);
+
+  const {
+    selectedValue: selectedDensity,
+    handleValueChange: handleSelectedDensityChange
+  } = usePicker(densityOptions[0]);
 
 
   const calculateResult = () => {
@@ -81,7 +85,6 @@ const ConstructionWoodCalculator = () => {
   };
 
   const handleReset = () => {
-    setResult(0);
     setShowResultCard(false);
   };
 
@@ -89,7 +92,7 @@ const ConstructionWoodCalculator = () => {
     const notes = await AsyncStorage.getItem('notes');
 
     const newNotes = notes
-      ? `${notes}\n\nVolym: ${volume} m³, Vikt: ${weight} ton, Vikt med 15% kompression: ${weightWithCompression} ton.`
+      ? `${notes}\n\nMakadam ${selectedSize}mm\nVolym: ${volume} m³, Vikt: ${weight} ton, Vikt med 15% kompression: ${weightWithCompression} ton.`
       : `Volym: ${volume} m³, Vikt: ${weight} ton, Vikt med 15% kompression: ${weightWithCompression} ton.,`;
 
     await AsyncStorage.setItem('notes', newNotes);
@@ -101,7 +104,7 @@ const ConstructionWoodCalculator = () => {
 
       <HeaderComponent
         title="Stenmjöl"
-        description="Ange stenstorlek samt mått i centimeter och beräkna önskad mängd i kubikmeter och ton."
+        description="Ange stenstorlek samt yta i centimeter och beräkna mängd i kubikmeter och ton. Rekommenderad densitet är 1.4 t/m³."
       />
 
       <DropdownSelectRow>
@@ -117,9 +120,9 @@ const ConstructionWoodCalculator = () => {
               placeholder="30"
               keyboardType="numeric" />
           </CellDividerMedium>
-          <CellDividerLabelTwo>
+          <CellDividerSmall>
             <UnitLabel label="cm" />
-          </CellDividerLabelTwo>
+          </CellDividerSmall>
         </DropdownSelectCell>
         <DropdownSelectCell>
           <CellDivider>
@@ -131,7 +134,7 @@ const ConstructionWoodCalculator = () => {
               selectedValue={selectedSize}
               onValueChange={handleSelectedSizeChange}
               items={sizeOptions}
-              label="Ange storlek"
+              label="Ange storlek (mm)"
             />
           </CellDivider>
         </DropdownSelectCell>
@@ -151,23 +154,24 @@ const ConstructionWoodCalculator = () => {
               placeholder="200"
               keyboardType="numeric" />
           </CellDividerMedium>
-          <CellDividerLabelTwo>
+          <CellDividerSmall>
             <UnitLabel label="cm" />
-          </CellDividerLabelTwo>
+          </CellDividerSmall>
         </DropdownSelectCell>
-
         <DropdownSelectCell>
           <CellDivider>
             <Label text="Densitet:" />
           </CellDivider>
 
           <CellDivider>
-            <FixedLabel
-             label={`${selectedDensity}t/m³`}
+            <CustomPicker
+              selectedValue={selectedDensity}
+              onValueChange={handleSelectedDensityChange}
+              items={densityOptions}
+              label="Ange densitet (t/m³)"
             />
           </CellDivider>
         </DropdownSelectCell>
-
       </DropdownSelectRow>
 
       <DropdownSelectRow>
@@ -182,9 +186,9 @@ const ConstructionWoodCalculator = () => {
               placeholder="450"
               keyboardType="numeric" />
           </CellDividerMedium>
-          <CellDividerLabelTwo>
+          <CellDividerSmall>
             <UnitLabel label="cm" />
-          </CellDividerLabelTwo>
+          </CellDividerSmall>
         </DropdownSelectCell>
 
 
@@ -202,11 +206,11 @@ const ConstructionWoodCalculator = () => {
         weightWithCompression={weightWithCompression}
         onSave={saveResultsToNotes}
         onClose={handleReset}
-        label={`Volym: ${volume} m³\nVikt: ${weight} ton,\nVikt med 15% kompression: ${weightWithCompression} ton.`}
+        label={`\nVolym: ${volume} m³\nVikt: ${weight} ton,\nVikt med 15% kompression: ${weightWithCompression} ton.`}
       />
 
     </ComponentWrapper>
   )
 }
 
-export default ConstructionWoodCalculator;
+export default RockFlourCalculator;

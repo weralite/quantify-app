@@ -1,7 +1,8 @@
 import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native'
 import { useState, useEffect } from 'react'
 import React from 'react'
-import CrushedStone from '../../components/calculators/gravel/CrushedStone'
+import CrushedRock from '../../components/calculators/gravel/CrushedRock'
+import RockFlour from '../../components/calculators/gravel/RockFlour'
 
 const Gravel = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,8 +24,8 @@ const Gravel = () => {
   return (
     <ScrollView>
       <View style={[styles.screenContainer]}>
-        <CrushedStone />
-        <CrushedStone />
+        <CrushedRock />
+        <RockFlour />
       </View>
     </ScrollView>
   )

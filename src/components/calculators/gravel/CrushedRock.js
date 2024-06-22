@@ -17,7 +17,7 @@ import UnitLabel from '../../common/labels/UnitLabel';
 import CellDividerMedium from '../../common/calculatorLayoutComponents/CellDividerMedium';
 import CellDividerSmall from '../../common/calculatorLayoutComponents/CellDividerSmall';
 
-const ConstructionWoodCalculator = () => {
+const CrushedRockCalculator = () => {
   const [height, setHeight] = React.useState('');
   const [width, setWidth] = React.useState('');
   const [length, setLength] = React.useState('');
@@ -30,7 +30,7 @@ const ConstructionWoodCalculator = () => {
   ];
 
   const sizeOptions = [
-    '2/4', '4/8', '8/16', '16/32', '32/64', '100-150'
+    '2-4', '4-8', '8-16', '16-32', '32-64', '100-150'
   ];
 
   const handleHeightChange = (newHeight) => {
@@ -134,7 +134,7 @@ const ConstructionWoodCalculator = () => {
               selectedValue={selectedSize}
               onValueChange={handleSelectedSizeChange}
               items={sizeOptions}
-              label="Ange storlek"
+              label="Ange storlek (mm)"
             />
           </CellDivider>
         </DropdownSelectCell>
@@ -168,7 +168,7 @@ const ConstructionWoodCalculator = () => {
               selectedValue={selectedDensity}
               onValueChange={handleSelectedDensityChange}
               items={densityOptions}
-              label="Ange densitet i t/m³"
+              label="Ange densitet (t/m³)"
             />
           </CellDivider>
         </DropdownSelectCell>
@@ -213,4 +213,4 @@ const ConstructionWoodCalculator = () => {
   )
 }
 
-export default ConstructionWoodCalculator;
+export default CrushedRockCalculator;

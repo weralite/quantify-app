@@ -13,13 +13,13 @@ const Menu = ({ navigation }) => {
         <MenuButton title="Skivmaterial" onPress={() => navigation.navigate('Details')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Sten och grus" onPress={() => navigation.navigate('Grusåtgång')} />
+        <MenuButton title="Grusåtgång" onPress={() => navigation.navigate('Grusåtgång')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
         <MenuButton title="Torrbruk" onPress={() => navigation.navigate('Details')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Virke" onPress={() => navigation.navigate('Virkesåtgång')} />
+        <MenuButton title="Virkestågång" onPress={() => navigation.navigate('Virkesåtgång')} />
       </Animated.View>
     </ScrollView>
   );
