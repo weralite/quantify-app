@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import DeckBoards from '../components/calculators/construction/DeckBoards'
 import ExperimentalThree from '../components/calculators/construction/ExperimenalThree'
-import Animated, { SlideInRight, SlideInLeft, SlideInUp, } from 'react-native-reanimated';
+import Animated, { SlideInRight, LightSpeedInLeft, ZoomIn, } from 'react-native-reanimated';
 
 const Wood = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,13 +24,11 @@ const Wood = () => {
   }
   return (
     <ScrollView>
-      <Animated.View entering={SlideInUp}>
       <View style={[styles.screenContainer]}>
         <ExperimentalThree />
         <DeckBoards />
         <ExperimentalThree />
       </View>
-      </Animated.View>
     </ScrollView>
   )
 }
