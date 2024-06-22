@@ -1,10 +1,9 @@
 import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native'
 import { useState, useEffect } from 'react'
 import React from 'react'
-import DeckBoardCalculator from '../../components/calculators/construction/DeckBoards'
-import ConstructionWood from '../../components/calculators/construction/ConstructionWood'
+import CrushedStone from '../../components/calculators/gravel/CrushedStone'
 
-const Wood = () => {
+const Gravel = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -24,14 +23,13 @@ const Wood = () => {
   return (
     <ScrollView>
       <View style={[styles.screenContainer]}>
-        <ConstructionWood />
-        <DeckBoardCalculator />
+        <CrushedStone />
       </View>
     </ScrollView>
   )
 }
 
-export default Wood
+export default Gravel
 
 const styles = StyleSheet.create({
 
@@ -40,6 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    // padding: 10,
     gap: 20,
   },
 

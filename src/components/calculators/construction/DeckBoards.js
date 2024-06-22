@@ -69,10 +69,7 @@ const DeckBoardCalculator = () => {
       const resultInMeters = parseFloat(result);
       const selectedLengthInMeters = parseInt(selectedLength) / 1000;
       let pieces = resultInMeters / selectedLengthInMeters;
-      pieces = Math.ceil(pieces);
-      if (pieces % 2 !== 0) {
-        pieces++;
-      }
+      pieces = Math.ceil(pieces); // Round up to the nearest whole number
       return pieces;
     };
 
@@ -90,7 +87,7 @@ const DeckBoardCalculator = () => {
     <ComponentWrapper>
 
       <HeaderComponent
-        title="Trall"
+        title="Trallvirke"
         description="Ange virkets dimensioner och ytan som ska täckas."
       />
 

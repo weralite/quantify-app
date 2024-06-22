@@ -13,7 +13,7 @@ const Menu = ({ navigation }) => {
         <MenuButton title="Skivmaterial" onPress={() => navigation.navigate('Details')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Sten" onPress={() => navigation.navigate('Details')} />
+        <MenuButton title="Sten och grus" onPress={() => navigation.navigate('Grusåtgång')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
         <MenuButton title="Torrbruk" onPress={() => navigation.navigate('Details')} />

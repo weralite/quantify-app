@@ -1,15 +1,19 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
+import { useState } from 'react';
 
 const InputField = ({ placeholder, onChangeText, value, keyboardType, style }) => {
+  const [isFocused, setIsFocused] = useState(false);
   return (
     <TextInput
       style={[styles.input, style]}
-      placeholder={placeholder}
+      placeholder={isFocused ? '' : placeholder} 
       onChangeText={onChangeText}
       value={value}
       keyboardType={keyboardType}
       placeholderTextColor="gray"
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
     />
   );
 };

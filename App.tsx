@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import HomeScreen from './src/screens/Home';
 import Wood from './src/screens/MenuOptions/Wood.js';
+import Gravel from './src/screens/MenuOptions/Gravel.js';
 import NotesScreen from './src/screens/Notes';
 import DetailsScreen from './src/screens/Placeholder.js'; 
 
@@ -47,6 +48,12 @@ function App() {
         <Stack.Screen
           name="Virkesåtgång"
           component={Wood}
+          options={{
+            cardStyleInterpolator: slideInFromLeft,
+          }} />
+        <Stack.Screen
+          name="Grusåtgång"
+          component={Gravel}
           options={{
             cardStyleInterpolator: slideInFromLeft,
           }} />

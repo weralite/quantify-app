@@ -22,10 +22,11 @@ const ConstructionWoodCalculator = () => {
   ];
 
   const distanceOptions = [
-    '200', '400', '450', '600', '900'
+    '200', '300', '400', '450', '500', '600', '900', '1200'
   ];
 
   const selectedThickness = '45';
+
 
   const {
     selectedValue: selectedLength,
@@ -38,11 +39,24 @@ const ConstructionWoodCalculator = () => {
   } = usePicker(distanceOptions[3]);
 
   const calculateResult = () => {
-    const UsageInMeters = 1000 / parseInt(selectedThickness);
-    const calculatedResult = UsageInMeters * parseFloat(area);
-    const resultWithMargin = calculatedResult * 1.10;
+    const lumberRequirementPerSquareMeter = {
+      '200': 5.00,
+      '300': 3.33,
+      '400': 2.50,
+      '500': 2.00,
+      '600': 1.67,
+      '800': 1.25,
+      '1000': 1.00,
+      '1200': 0.83
+    };
+  
+
+    const requirement = lumberRequirementPerSquareMeter[selectedDistance];
+    const totalLumber = parseFloat(area) * requirement;
+    const resultWithMargin = totalLumber * 1.10;
+
     setResult(resultWithMargin.toFixed(2));
-    setShowResultCard(true); 
+    setShowResultCard(true);
   };
 
   const handleAreaChange = (newArea) => {
@@ -69,9 +83,6 @@ const ConstructionWoodCalculator = () => {
       const selectedLengthInMeters = parseInt(selectedLength) / 1000;
       let pieces = resultInMeters / selectedLengthInMeters;
       pieces = Math.ceil(pieces);
-      if (pieces % 2 !== 0) {
-        pieces++;
-      }
       return pieces;
     };
 
@@ -89,7 +100,7 @@ const ConstructionWoodCalculator = () => {
 
       <HeaderComponent
         title="Regel / Läkt"
-        description="Ange yta och regelavstånd. Till summan löpmeter (LPM) ska längden av vald regel eller läkt adderas."
+        description="Ange yta och regelavstånd. Observera att till summan löpmeter ska längden av en regel eller läkt adderas."
       />
 
       <DropdownSelectRow>

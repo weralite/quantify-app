@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 5,
     overflow: 'hidden',
+    padding: 15,
   },
 
 })
