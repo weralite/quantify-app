@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, ActivityIndicator, View } from 'react-native';
-import Header from '../components/Header';
-import Menu from '../components/Menu';
-import IconHolder from '../components/IconHolder';
+import Header from '../components/homescreen/Header';
+import Menu from '../components/homescreen/Menu';
+import IconHolder from '../components/homescreen/IconHolder';
 
 function HomeScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(true);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
-import MenuButton from './common/buttons/MenuButton';
+import MenuButton from '../common/buttons/MenuButton';
 import Animated, { SlideInRight, SlideInLeft, SlideInDown, BounceIn } from 'react-native-reanimated';
 
 const Menu = ({ navigation }) => {

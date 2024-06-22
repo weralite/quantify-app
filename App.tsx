@@ -4,10 +4,10 @@ import React from 'react';
 import { enableScreens } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
-import HomeScreen from './src/screens/Home'; // Update this path as necessary
+import HomeScreen from './src/screens/Home';
 import Wood from './src/screens/MenuOptions/Wood.js';
 import NotesScreen from './src/screens/Notes';
-import DetailsScreen from './src/screens/Placeholder.js'; // Assuming you might also move DetailsScreen later
+import DetailsScreen from './src/screens/Placeholder.js'; 
 
 enableScreens();
 const Stack = createStackNavigator();

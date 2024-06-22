@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../common/inputs/UsePicker';
-import ComponentWrapper from '../CalculatorStructure/ComponentWrapper';
-import HeaderComponent from '../CalculatorStructure/HeaderComponent';
-import DropdownSelectRow from '../CalculatorStructure/DropdownSelectRow';
-import DropdownSelectCell from '../CalculatorStructure/DropdownSelectCell';
+import ComponentWrapper from '../../common/calculatorLayoutComponents/ComponentWrapper';
+import HeaderComponent from '../../common/calculatorLayoutComponents/HeaderComponent';
+import DropdownSelectRow from '../../common/calculatorLayoutComponents/DropdownSelectRow';
+import DropdownSelectCell from '../../common/calculatorLayoutComponents/DropdownSelectCell';
 import InputField from '../../common/inputs/InputField'
 import SubmitButton from '../../common/buttons/SubmitButton'
 import CustomPicker from '../../common/inputs/CustomPicker';
-import ResultCard from '../../ResultCard';
-import CellDivider from '../CalculatorStructure/CellDivider';
-import Label from '../CalculatorStructure/DropdownSelectLabel';
+import ResultCard from '../../common/ResultCard';
+import CellDivider from '../../common/calculatorLayoutComponents/CellDivider';
+import Label from '../../common/calculatorLayoutComponents/DropdownSelectLabel';
 
 const ConstructionWoodCalculator = () => {
   const [area, setArea] = React.useState('');

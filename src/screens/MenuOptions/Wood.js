@@ -26,7 +26,6 @@ const Wood = () => {
       <View style={[styles.screenContainer]}>
         <ConstructionWood />
         <DeckBoardCalculator />
-        <ConstructionWood />
       </View>
     </ScrollView>
   )

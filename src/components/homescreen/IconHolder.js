@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import NoteBookIcon from '../assets/images/note-book.svg';
+import NoteBookIcon from '../../assets/images/note-book.svg';
 
 
 const IconHolder = ({ navigation }) => {
