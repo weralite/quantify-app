@@ -9,6 +9,7 @@ const InputField = ({ placeholder, onChangeText, value, keyboardType, style }) =
       onChangeText={onChangeText}
       value={value}
       keyboardType={keyboardType}
+      placeholderTextColor="gray"
     />
   );
 };
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     fontSize: 20,
+    color: 'black',
     borderColor: 'gray',
     borderWidth: 1,
     textAlign: 'center',

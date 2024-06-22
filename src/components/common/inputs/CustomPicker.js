@@ -61,7 +61,7 @@ const CustomPicker = ({ items, selectedValue, onValueChange, label }) => {
             activeOpacity={1}
             onStartShouldSetResponder={() => true}
           >
-            <Text style={{ textAlign: 'center', padding: 10, fontSize: 20 }}>{label}</Text>
+            <Text style={{ textAlign: 'center', color: 'gray', padding: 10, fontSize: 20 }}>{label}</Text>
             <FlatList
               data={items}
               renderItem={renderItem}

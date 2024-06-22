@@ -22,7 +22,7 @@ function HomeScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ gap: 60 }}>
       <Header />
       <IconHolder navigation={navigation} />
       <Menu navigation={navigation} />
