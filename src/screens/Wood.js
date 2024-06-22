@@ -1,9 +1,8 @@
 import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native'
 import { useState, useEffect } from 'react'
 import React from 'react'
-import DeckBoards from '../components/calculators/construction/DeckBoards'
-import ExperimentalThree from '../components/calculators/construction/ExperimenalThree'
-import Animated, { SlideInRight, LightSpeedInLeft, ZoomIn, } from 'react-native-reanimated';
+import DeckBoardCalculator from '../components/calculators/construction/DeckBoards'
+import ConstructionWood from '../components/calculators/construction/ConstructionWood'
 
 const Wood = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,9 +24,9 @@ const Wood = () => {
   return (
     <ScrollView>
       <View style={[styles.screenContainer]}>
-        <ExperimentalThree />
-        <DeckBoards />
-        <ExperimentalThree />
+        <ConstructionWood />
+        <DeckBoardCalculator />
+        <ConstructionWood />
       </View>
     </ScrollView>
   )

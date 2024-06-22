@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
+import { useState } from 'react'
 import SubmitButton from '../../buttons/SubmitButton'
 import InputField from '../../inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,10 +15,10 @@ import ResultCard from '../../ResultCard';
 import CellDivider from '../../CellDivider';
 import Label from '../../DropdownSelectLabel';
 
-const DeckBoards = () => {
+const DeckBoardCalculator = () => {
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
-  const [increasedResult, setIncreasedResult] = React.useState(0);
+  const [showResultCard, setShowResultCard] = useState(false);
 
   const thicknessOptions = ['22', '28', '34'];
   const widthOptions = ['95', '120', '145'];
@@ -42,12 +43,13 @@ const DeckBoards = () => {
     const metersPerSquare = 1000 / parseInt(selectedWidth);
     const calculatedResult = metersPerSquare * parseFloat(area);
     const resultWithMargin = calculatedResult * 1.10;
-    setResult(calculatedResult.toFixed(2));
-    setIncreasedResult(resultWithMargin.toFixed(2));
+    setResult(resultWithMargin.toFixed(2));
+    setShowResultCard(true);
   };
 
   const handleAreaChange = (newArea) => {
     setArea(newArea);
+    setShowResultCard(false);
   };
 
   const handleSubmit = () => {
@@ -58,15 +60,16 @@ const DeckBoards = () => {
 
   const handleReset = () => {
     setResult(0);
+    setShowResultCard(false);
   };
 
   const saveResultsToNotes = async () => {
     const notes = await AsyncStorage.getItem('notes');
 
-    const convertIncreasedResult = (increasedResult, selectedLength) => {
-      const increasedResultInMeters = parseFloat(increasedResult);
+    const convertResult = (result, selectedLength) => {
+      const resultInMeters = parseFloat(result);
       const selectedLengthInMeters = parseInt(selectedLength) / 1000;
-      let pieces = increasedResultInMeters / selectedLengthInMeters;
+      let pieces = resultInMeters / selectedLengthInMeters;
       pieces = Math.ceil(pieces);
       if (pieces % 2 !== 0) {
         pieces++;
@@ -74,11 +77,11 @@ const DeckBoards = () => {
       return pieces;
     };
 
-    const pieces = convertIncreasedResult(increasedResult, selectedLength);
+    const pieces = convertResult(result, selectedLength);
 
     const newNotes = notes
-      ? `${notes}\n\nTrall, ${area}m² (${increasedResult} LPM, inkl 10%),\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`
-      : `Trall, ${area}m² (${increasedResult} LPM, inkl 10%)\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`;
+      ? `${notes}\n\nTrall, ${area}m² (${result} LPM, inkl 10%),\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`
+      : `Trall, ${area}m² (${result} LPM, inkl 10%)\n${pieces} ST, ${selectedThickness}x${selectedWidth}x${selectedLength}mm`;
 
     await AsyncStorage.setItem('notes', newNotes);
     handleReset();
@@ -122,7 +125,7 @@ const DeckBoards = () => {
               selectedValue={selectedLength}
               onValueChange={handleSelectedLengthChange}
               items={lengthOptions}
-              label="Ange virkets längd"/>
+              label="Ange virkets längd" />
 
           </CellDivider>
         </DropdownSelectCell>
@@ -146,14 +149,15 @@ const DeckBoards = () => {
       </DropdownSelectRow>
 
       <ResultCard
+        showResultCard={showResultCard}
+        setShowResultCard={setShowResultCard}
         result={result}
-        increasedResult={increasedResult}
         onSave={saveResultsToNotes}
         onClose={handleReset}
-        label={`Du behöver ${increasedResult} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
+        label={`Du behöver ${result} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
       />
     </ComponentWrapper>
   )
 }
 
-export default DeckBoards
+export default DeckBoardCalculator

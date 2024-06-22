@@ -11,12 +11,11 @@ import PickerComponentFour from '../../inputs/PickerComponentFour';
 import ResultCard from '../../ResultCard';
 import CellDivider from '../../CellDivider';
 import Label from '../../DropdownSelectLabel';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, interpolate } from 'react-native-reanimated';
 
-const Experimental = () => {
+const ConstructionWoodCalculator = () => {
   const [area, setArea] = React.useState('');
   const [result, setResult] = React.useState(0);
-  const [showResultCard, setShowResultCard] = useState(false); // State for showing/hiding ResultCard
+  const [showResultCard, setShowResultCard] = useState(false); 
 
   const lengthOptions = [
     '2500', '2700', '3000', '3300', '3600', '3900', '4200', '4500', '4800', '5100', '5400'
@@ -43,12 +42,12 @@ const Experimental = () => {
     const calculatedResult = UsageInMeters * parseFloat(area);
     const resultWithMargin = calculatedResult * 1.10;
     setResult(resultWithMargin.toFixed(2));
-    setShowResultCard(true); // Show ResultCard after calculation
+    setShowResultCard(true); 
   };
 
   const handleAreaChange = (newArea) => {
     setArea(newArea);
-    setShowResultCard(false); // Hide ResultCard when area changes
+    setShowResultCard(false); 
   };
 
   const handleSubmit = () => {
@@ -59,7 +58,7 @@ const Experimental = () => {
 
   const handleReset = () => {
     setResult(0);
-    setShowResultCard(false); // Hide ResultCard on reset
+    setShowResultCard(false); 
   };
 
   const saveResultsToNotes = async () => {
@@ -77,7 +76,6 @@ const Experimental = () => {
     };
 
     const pieces = convertResult(result, selectedLength);
-
     const newNotes = notes
       ? `${notes}\n\nKonstruktion, ${area}m² (${result} LPM, inkl 10%),\n${pieces} ST Reglar á ${selectedLength}mm`
       : `Trall, ${area}m² (${result} LPM, inkl 10%)\n${pieces} ST, ${selectedLength}mm`;
@@ -95,7 +93,6 @@ const Experimental = () => {
       />
 
       <DropdownSelectRow>
-
         <DropdownSelectCell>
           <CellDivider>
             <Label text="Avstånd:" />
@@ -126,11 +123,9 @@ const Experimental = () => {
             />
           </CellDivider>
         </DropdownSelectCell>
-
       </DropdownSelectRow>
 
       <DropdownSelectRow>
-
         <CellDivider>
           <InputField
             placeholder="M2"
@@ -145,6 +140,7 @@ const Experimental = () => {
         </CellDivider>
 
       </DropdownSelectRow>
+
         <ResultCard
           showResultCard={showResultCard}
           setShowResultCard={setShowResultCard}
@@ -158,4 +154,4 @@ const Experimental = () => {
   )
 }
 
-export default Experimental;
+export default ConstructionWoodCalculator;
