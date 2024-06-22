@@ -1,19 +1,18 @@
 import { StyleSheet, Text, View, Button } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
-import SubmitButton from '../../buttons/SubmitButton'
-import InputField from '../../inputs/InputField'
+import SubmitButton from '../../common/buttons/SubmitButton'
+import InputField from '../../common/inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import usePicker from '../../inputs/UsePicker';
-import PickerComponent from '../../inputs/PickerComponent';
-import ComponentWrapper from '../../ComponentWrapper';
-import HeaderComponent from '../../HeaderComponent';
-import DropdownSelectRow from '../../DropdownSelectRow';
-import DropdownSelectCell from '../../DropdownSelectCell';
-import PickerComponentFour from '../../inputs/PickerComponentFour';
+import usePicker from '../../common/inputs/UsePicker';
+import ComponentWrapper from '../CalculatorStructure/ComponentWrapper';
+import HeaderComponent from '../CalculatorStructure/HeaderComponent';
+import DropdownSelectRow from '../CalculatorStructure/DropdownSelectRow';
+import DropdownSelectCell from '../CalculatorStructure/DropdownSelectCell';
+import CustomPicker from '../../common/inputs/CustomPicker';
 import ResultCard from '../../ResultCard';
-import CellDivider from '../../CellDivider';
-import Label from '../../DropdownSelectLabel';
+import CellDivider from '../CalculatorStructure/CellDivider';
+import Label from '../CalculatorStructure/DropdownSelectLabel';
 
 const DeckBoardCalculator = () => {
   const [area, setArea] = React.useState('');
@@ -104,7 +103,7 @@ const DeckBoardCalculator = () => {
           </CellDivider>
           <CellDivider>
 
-            <PickerComponentFour
+            <CustomPicker
               selectedValue={selectedWidth}
               onValueChange={handleSelectedWidthChange}
               items={widthOptions}
@@ -121,7 +120,7 @@ const DeckBoardCalculator = () => {
           </CellDivider>
           <CellDivider>
 
-            <PickerComponentFour
+            <CustomPicker
               selectedValue={selectedLength}
               onValueChange={handleSelectedLengthChange}
               items={lengthOptions}

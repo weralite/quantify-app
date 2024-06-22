@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import usePicker from '../../inputs/UsePicker';
-import ComponentWrapper from '../../ComponentWrapper';
-import HeaderComponent from '../../HeaderComponent';
-import DropdownSelectRow from '../../DropdownSelectRow';
-import DropdownSelectCell from '../../DropdownSelectCell';
-import InputField from '../../inputs/InputField'
-import SubmitButton from '../../buttons/SubmitButton'
-import PickerComponentFour from '../../inputs/PickerComponentFour';
+import usePicker from '../../common/inputs/UsePicker';
+import ComponentWrapper from '../CalculatorStructure/ComponentWrapper';
+import HeaderComponent from '../CalculatorStructure/HeaderComponent';
+import DropdownSelectRow from '../CalculatorStructure/DropdownSelectRow';
+import DropdownSelectCell from '../CalculatorStructure/DropdownSelectCell';
+import InputField from '../../common/inputs/InputField'
+import SubmitButton from '../../common/buttons/SubmitButton'
+import CustomPicker from '../../common/inputs/CustomPicker';
 import ResultCard from '../../ResultCard';
-import CellDivider from '../../CellDivider';
-import Label from '../../DropdownSelectLabel';
+import CellDivider from '../CalculatorStructure/CellDivider';
+import Label from '../CalculatorStructure/DropdownSelectLabel';
 
 const ConstructionWoodCalculator = () => {
   const [area, setArea] = React.useState('');
@@ -99,7 +99,7 @@ const ConstructionWoodCalculator = () => {
           </CellDivider>
 
           <CellDivider>
-            <PickerComponentFour
+            <CustomPicker
               selectedValue={selectedDistance}
               onValueChange={handleSelectedDistanceChange}
               items={distanceOptions}
@@ -115,7 +115,7 @@ const ConstructionWoodCalculator = () => {
           </CellDivider>
 
           <CellDivider>
-            <PickerComponentFour
+            <CustomPicker
               selectedValue={selectedLength}
               onValueChange={handleSelectedLengthChange}
               items={lengthOptions}

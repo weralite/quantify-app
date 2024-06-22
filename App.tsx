@@ -1,49 +1,16 @@
 import 'react-native-gesture-handler';
 import 'react-native-screens';
 import React from 'react';
-import { enableScreens } from 'react-native-screens'
-import { Button, SafeAreaView, ActivityIndicator, Text, View } from 'react-native';
+import { enableScreens } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Header from './src/components/Header';
-import Menu from './src/components/Menu';
-import Wood from './src/screens/Wood';
+import HomeScreen from './src/screens/Home'; // Update this path as necessary
+import Wood from './src/screens/MenuOptions/Wood.js';
 import NotesScreen from './src/screens/Notes';
-import IconHolder from './src/components/IconHolder';
-import { useState, useEffect } from 'react';
+import DetailsScreen from './src/screens/Placeholder.js'; // Assuming you might also move DetailsScreen later
 
 enableScreens();
 const Stack = createStackNavigator();
-
-function HomeScreen({ navigation }: { navigation: any }) {
-  const [isLoading, setIsLoading] = useState(true);
-  // const backgroundStyle = {
-  //   backgroundColor: Colors.lighter,
-  // };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View >
-    );
-  }
-
-  return (
-    <SafeAreaView>
-      <Header />
-      <IconHolder navigation={navigation} />
-      <Menu navigation={navigation} />
-    </SafeAreaView>
-  );
-}
 
 const slideInFromLeft: StackNavigationOptions['cardStyleInterpolator'] = ({ current, layouts }) => {
   return {
@@ -59,16 +26,6 @@ const slideInFromLeft: StackNavigationOptions['cardStyleInterpolator'] = ({ curr
     },
   };
 };
-
-
-function DetailsScreen() {
-  const [value, setValue] = React.useState('');
-  return (
-    <SafeAreaView>
-      <Text>Placeholder</Text>
-    </SafeAreaView>
-  );
-}
 
 function App() {
   return (
@@ -95,13 +52,10 @@ function App() {
           }} />
         <Stack.Screen
           name="Details"
-
           component={DetailsScreen}
           options={{
             cardStyleInterpolator: slideInFromLeft,
           }} />
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );
