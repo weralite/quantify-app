@@ -100,7 +100,7 @@ const ConstructionWoodCalculator = () => {
 
       <HeaderComponent
         title="Regel / Läkt"
-        description="Ange yta och regelavstånd. Observera att till summan löpmeter ska längden av en regel eller läkt adderas."
+        description="Ange yta och regelavstånd. Observera att till summan löpmeter (lm) ska längden av en regel eller läkt adderas."
       />
 
       <DropdownSelectRow>

@@ -25,6 +25,7 @@ const ConstructionWoodCalculator = () => {
   const [volume, setVolume] = React.useState(0);
   const [weight, setWeight] = React.useState(0);
   const [weightWithCompression, setWeightWithCompression] = React.useState(0);
+  const [result, setResult] = React.useState(0);
   const [showResultCard, setShowResultCard] = useState(false);
 
   const selectedDensity = 1.40;
@@ -80,6 +81,7 @@ const ConstructionWoodCalculator = () => {
   };
 
   const handleReset = () => {
+    setResult(0);
     setShowResultCard(false);
   };
 
@@ -87,7 +89,7 @@ const ConstructionWoodCalculator = () => {
     const notes = await AsyncStorage.getItem('notes');
 
     const newNotes = notes
-      ? `${notes}\n\nMakadam ${selectedSize}mm\nVolym: ${volume} m³, Vikt: ${weight} ton, Vikt med 15% kompression: ${weightWithCompression} ton.`
+      ? `${notes}\n\nVolym: ${volume} m³, Vikt: ${weight} ton, Vikt med 15% kompression: ${weightWithCompression} ton.`
       : `Volym: ${volume} m³, Vikt: ${weight} ton, Vikt med 15% kompression: ${weightWithCompression} ton.,`;
 
     await AsyncStorage.setItem('notes', newNotes);
@@ -200,7 +202,7 @@ const ConstructionWoodCalculator = () => {
         weightWithCompression={weightWithCompression}
         onSave={saveResultsToNotes}
         onClose={handleReset}
-        label={`\nVolym: ${volume} m³\nVikt: ${weight} ton,\nVikt med 15% kompression: ${weightWithCompression} ton.`}
+        label={`Volym: ${volume} m³\nVikt: ${weight} ton,\nVikt med 15% kompression: ${weightWithCompression} ton.`}
       />
 
     </ComponentWrapper>

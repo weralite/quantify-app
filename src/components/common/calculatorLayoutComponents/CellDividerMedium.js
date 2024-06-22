@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const CellDividerLabel = ({ children }) => (
+const CellDividerMedium = ({ children }) => (
   <View style={[styles.cellDivider]}>
         {children}
   </View>
 );
 
-export default CellDividerLabel;
+export default CellDividerMedium;
 
 const styles = StyleSheet.create({
     cellDivider: {
-        width: '17%',
+        width: '30%',
       },
 
   })

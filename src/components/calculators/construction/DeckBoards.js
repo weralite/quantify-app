@@ -150,7 +150,7 @@ const DeckBoardCalculator = () => {
         result={result}
         onSave={saveResultsToNotes}
         onClose={handleReset}
-        label={`Du behöver ${result} LPM inkl 10% marginal, (${result} LPM exkl marginal)`}
+        label={`Du behöver ${result} LPM inkl 10% marginal,  LPM exkl marginal)`}
       />
     </ComponentWrapper>
   )

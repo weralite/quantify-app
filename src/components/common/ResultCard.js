@@ -12,7 +12,7 @@ import { runOnJS } from 'react-native-reanimated';
 
 
 
-const ResultCard = ({ result, onSave, onClose, label, showResultCard, setShowResultCard }) => {
+const ResultCard = ({ onSave, onClose, label, showResultCard }) => {
   const anim = useSharedValue(0);
   const [hasMeasured, setHasMeasured] = useState(false);
   const targetHeight = useSharedValue(0);
@@ -46,7 +46,6 @@ const handleSave = () => {
 };
 
   return (
-    result === 0 ? null :
     <Animated.View
       key={label}
       style={[styles.resultCard, animStyle]}
@@ -59,7 +58,7 @@ const handleSave = () => {
       }}
     >
       <View style={styles.innerCard}>
-          <Text>{label}</Text>
+          <Text style={styles.cardText}>{label}</Text>
           <View style={styles.buttonContainer}>
             <Button title="Spara" onPress={handleSave} />
             <Button title="Stäng" onPress={handleClose} />
@@ -71,7 +70,7 @@ const handleSave = () => {
 
 const styles = StyleSheet.create({
   resultCard: {
-    width: '95%',
+    width: '90%',
     display: 'flex',
     opacity: 0,
     flexDirection: 'column',
@@ -85,11 +84,18 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    borderRadius: 5,
     alignItems: 'center',
     backgroundColor: '#f9f9f9',
     padding: 10,
-    gap: 15,
+    gap: 10,
     minHeight: 120,
+  },
+
+  cardText: {
+    fontSize: 16,
+    fontFamily: 'Arial',
+    color: '#000',
   },
   buttonContainer: {
     display: 'flex',

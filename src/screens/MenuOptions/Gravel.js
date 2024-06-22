@@ -24,6 +24,7 @@ const Gravel = () => {
     <ScrollView>
       <View style={[styles.screenContainer]}>
         <CrushedStone />
+        <CrushedStone />
       </View>
     </ScrollView>
   )
