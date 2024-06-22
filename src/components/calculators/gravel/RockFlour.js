@@ -25,6 +25,9 @@ const RockFlourCalculator = () => {
   const [weight, setWeight] = React.useState(0);
   const [weightWithCompression, setWeightWithCompression] = React.useState(0);
   const [showResultCard, setShowResultCard] = useState(false);
+  const [heightError, setHeightError] = useState(false);
+  const [widthError, setWidthError] = useState(false);
+  const [lengthError, setLengthError] = useState(false);
 
   const densityOptions = [1.50, 1.60
   ];
@@ -79,7 +82,32 @@ const RockFlourCalculator = () => {
 
 
   const handleSubmit = () => {
-    if (height !== '' && width !== '' && length !== '') {
+    // Validate fields
+    let isValid = true;
+
+    if (!height) {
+      setHeightError(true);
+      isValid = false;
+    } else {
+      setHeightError(false);
+    }
+
+    if (!width) {
+      setWidthError(true);
+      isValid = false;
+    } else {
+      setWidthError(false);
+    }
+
+    if (!length) {
+      setLengthError(true);
+      isValid = false;
+    } else {
+      setLengthError(false);
+    }
+
+    // If all fields are valid, calculate result
+    if (isValid) {
       calculateResult();
     }
   };
@@ -109,7 +137,7 @@ const RockFlourCalculator = () => {
 
       <DropdownSelectRow>
 
-        <DropdownSelectCell>
+        <DropdownSelectCell style={heightError ? styles.errorContainer : null}>
           <CellDivider>
             <Label text="Höjd:" />
           </CellDivider>
@@ -118,7 +146,8 @@ const RockFlourCalculator = () => {
               onChangeText={handleHeightChange}
               value={height}
               placeholder="30"
-              keyboardType="numeric" />
+              keyboardType="numeric"
+              onBlur={(error) => setHeightError(error)} />
           </CellDividerMedium>
           <CellDividerSmall>
             <UnitLabel label="cm" />
@@ -143,7 +172,7 @@ const RockFlourCalculator = () => {
       </DropdownSelectRow>
 
       <DropdownSelectRow>
-        <DropdownSelectCell>
+        <DropdownSelectCell style={widthError ? styles.errorContainer : null}>
           <CellDivider>
             <Label text="Bredd:" />
           </CellDivider>
@@ -152,7 +181,8 @@ const RockFlourCalculator = () => {
               onChangeText={handleWidthChange}
               value={width}
               placeholder="200"
-              keyboardType="numeric" />
+              keyboardType="numeric"
+              onBlur={(error) => setWidthError(error)} />
           </CellDividerMedium>
           <CellDividerSmall>
             <UnitLabel label="cm" />
@@ -175,7 +205,7 @@ const RockFlourCalculator = () => {
       </DropdownSelectRow>
 
       <DropdownSelectRow>
-        <DropdownSelectCell>
+        <DropdownSelectCell style={lengthError ? styles.errorContainer : null}>
           <CellDivider>
             <Label text="Längd:" />
           </CellDivider>
@@ -184,7 +214,8 @@ const RockFlourCalculator = () => {
               onChangeText={handleLengthChange}
               value={length}
               placeholder="450"
-              keyboardType="numeric" />
+              keyboardType="numeric"
+              onBlur={(error) => setLengthError(error)} />
           </CellDividerMedium>
           <CellDividerSmall>
             <UnitLabel label="cm" />
@@ -214,3 +245,9 @@ const RockFlourCalculator = () => {
 }
 
 export default RockFlourCalculator;
+
+const styles = {
+  errorContainer: {
+    borderColor: 'red',
+  },
+};

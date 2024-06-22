@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const DropdownSelectCell = ({ children }) => (
-  <View style={[styles.dropdownSelectCell]}>
+const DropdownSelectCell = ({ children, style }) => (
+  <View style={[styles.dropdownSelectCell, style]}>
         {children}
   </View>
 );
