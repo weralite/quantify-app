@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import CrushedRock from '../../components/calculators/gravel/CrushedRock'
 import RockFlour from '../../components/calculators/gravel/RockFlour'
+import Animated, { SlideInRight, SlideInLeft, SlideInDown, BounceIn } from 'react-native-reanimated';
 
 const Gravel = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,10 +24,10 @@ const Gravel = () => {
   }
   return (
     <ScrollView>
-      <View style={[styles.screenContainer]}>
+     <Animated.View entering={SlideInLeft} style={[styles.screenContainer]}>
         <CrushedRock />
         <RockFlour />
-      </View>
+      </Animated.View>
     </ScrollView>
   )
 }

@@ -29,12 +29,12 @@ const ConstructionWoodCalculator = () => {
   const {
     selectedValue: selectedLength,
     handleValueChange: handleSelectedLengthChange
-  } = usePicker(lengthOptions[2]);
+  } = usePicker(lengthOptions[6]);
 
   const {
     selectedValue: selectedDistance,
     handleValueChange: handleSelectedDistanceChange
-  } = usePicker(distanceOptions[2]);
+  } = usePicker(distanceOptions[5]);
 
   const calculateResult = () => {
     const lumberRequirementPerSquareMeter = {
