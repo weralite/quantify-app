@@ -79,33 +79,23 @@ const RockFlourCalculator = () => {
   };
 
 
-
-
   const handleSubmit = () => {
-    // Validate fields
-    let isValid = true;
-
-    if (!height) {
-      setHeightError(true);
-      isValid = false;
-    } else {
-      setHeightError(false);
-    }
-
-    if (!width) {
-      setWidthError(true);
-      isValid = false;
-    } else {
-      setWidthError(false);
-    }
-
-    if (!length) {
-      setLengthError(true);
-      isValid = false;
-    } else {
-      setLengthError(false);
-    }
-
+    // Array of field validators
+    const fields = [
+      { value: height, setError: setHeightError },
+      { value: width, setError: setWidthError },
+      { value: length, setError: setLengthError }
+    ];
+  
+    // Apply validation and error setting for each field
+    fields.forEach(field => {
+      const hasValue = !!field.value;
+      field.setError(!hasValue);
+    });
+  
+    // Check if all fields are valid after setting errors
+    const isValid = fields.every(field => !!field.value);
+  
     // If all fields are valid, calculate result
     if (isValid) {
       calculateResult();
@@ -137,7 +127,7 @@ const RockFlourCalculator = () => {
 
       <DropdownSelectRow>
 
-        <DropdownSelectCell error={widthError}>
+        <DropdownSelectCell error={heightError}>
           <CellDivider>
             <Label text="Höjd:" />
           </CellDivider>
@@ -146,8 +136,7 @@ const RockFlourCalculator = () => {
               onChangeText={handleHeightChange}
               value={height}
               placeholder="30"
-              keyboardType="numeric"
-              onBlur={(error) => setHeightError(error)} />
+              keyboardType="numeric" />
           </CellDividerMedium>
           <CellDividerSmall>
             <UnitLabel label="cm" />
@@ -181,8 +170,7 @@ const RockFlourCalculator = () => {
               onChangeText={handleWidthChange}
               value={width}
               placeholder="200"
-              keyboardType="numeric"
-              />
+              keyboardType="numeric" />
           </CellDividerMedium>
           <CellDividerSmall>
             <UnitLabel label="cm" />
@@ -214,8 +202,7 @@ const RockFlourCalculator = () => {
               onChangeText={handleLengthChange}
               value={length}
               placeholder="450"
-              keyboardType="numeric"
-              onBlur={(error) => setLengthError(error)} />
+              keyboardType="numeric" />
           </CellDividerMedium>
           <CellDividerSmall>
             <UnitLabel label="cm" />
