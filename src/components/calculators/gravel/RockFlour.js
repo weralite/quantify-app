@@ -16,6 +16,7 @@ import Label from '../../common/calculatorLayoutComponents/DropdownSelectLabel';
 import UnitLabel from '../../common/labels/UnitLabel';
 import CellDividerMedium from '../../common/calculatorLayoutComponents/CellDividerMedium';
 import CellDividerSmall from '../../common/calculatorLayoutComponents/CellDividerSmall';
+import { validateFields } from '../../../utils/ValidateFields';
 
 const RockFlourCalculator = () => {
   const [height, setHeight] = React.useState('');
@@ -62,13 +63,10 @@ const RockFlourCalculator = () => {
     const width_m = width / 100;
     const length_m = length / 100;
 
-    // Calculate volume in cubic meters
     const volume = height_m * width_m * length_m;
 
-    // Calculate weight
     const weight = volume * selectedDensity;
 
-    // Calculate weight with 15% compression
     const weightWithCompression = weight * 1.15;
 
     // Set the results in state
@@ -80,23 +78,14 @@ const RockFlourCalculator = () => {
 
 
   const handleSubmit = () => {
-    // Array of field validators
     const fields = [
       { value: height, setError: setHeightError },
       { value: width, setError: setWidthError },
       { value: length, setError: setLengthError }
     ];
   
-    // Apply validation and error setting for each field
-    fields.forEach(field => {
-      const hasValue = !!field.value;
-      field.setError(!hasValue);
-    });
+    const isValid = validateFields(fields);
   
-    // Check if all fields are valid after setting errors
-    const isValid = fields.every(field => !!field.value);
-  
-    // If all fields are valid, calculate result
     if (isValid) {
       calculateResult();
     }
