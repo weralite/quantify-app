@@ -137,7 +137,7 @@ const RockFlourCalculator = () => {
 
       <DropdownSelectRow>
 
-        <DropdownSelectCell style={heightError ? styles.errorContainer : null}>
+        <DropdownSelectCell error={widthError}>
           <CellDivider>
             <Label text="Höjd:" />
           </CellDivider>
@@ -172,7 +172,7 @@ const RockFlourCalculator = () => {
       </DropdownSelectRow>
 
       <DropdownSelectRow>
-        <DropdownSelectCell style={widthError ? styles.errorContainer : null}>
+        <DropdownSelectCell error={widthError}>
           <CellDivider>
             <Label text="Bredd:" />
           </CellDivider>
@@ -182,7 +182,7 @@ const RockFlourCalculator = () => {
               value={width}
               placeholder="200"
               keyboardType="numeric"
-              onBlur={(error) => setWidthError(error)} />
+              />
           </CellDividerMedium>
           <CellDividerSmall>
             <UnitLabel label="cm" />
@@ -205,7 +205,7 @@ const RockFlourCalculator = () => {
       </DropdownSelectRow>
 
       <DropdownSelectRow>
-        <DropdownSelectCell style={lengthError ? styles.errorContainer : null}>
+        <DropdownSelectCell error={lengthError}>
           <CellDivider>
             <Label text="Längd:" />
           </CellDivider>
@@ -245,9 +245,3 @@ const RockFlourCalculator = () => {
 }
 
 export default RockFlourCalculator;
-
-const styles = {
-  errorContainer: {
-    borderColor: 'red',
-  },
-};
