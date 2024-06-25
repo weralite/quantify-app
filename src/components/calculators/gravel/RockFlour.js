@@ -1,22 +1,10 @@
 import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../common/inputs/UsePicker';
-import CalculatorBody from '../../common/calculatorLayoutComponents/CalculatorBody';
-import CalculatorHeader from '../../common/calculatorLayoutComponents/CalculatorHeader';
-import CalculatorRow from '../../common/calculatorLayoutComponents/CalculatorRow';
-import CalculatorCell from '../../common/calculatorLayoutComponents/CalculatorCell';
-import InputFieldSmall from '../../common/inputs/InputFieldSmall'
 import SubmitButton from '../../common/buttons/SubmitButton'
-import CustomPicker from '../../common/inputs/CustomPicker';
-import ResultCard from '../../common/ResultCard';
-import CellDividerLarge from '../../common/calculatorLayoutComponents/CellDividerLarge';
-import Label from '../../common/calculatorLayoutComponents/CalculatorLabel';
-import UnitLabel from '../../common/calculatorLayoutComponents/CalculatorUnitLabel';
-import CellDividerMedium from '../../common/calculatorLayoutComponents/CellDividerMedium';
-import CellDividerSmall from '../../common/calculatorLayoutComponents/CellDividerSmall';
 import { validateFields } from '../../../utils/ValidateFields';
-import InputfieldUnit from '../../common/assembledComponents/InputfieldUnit';
-import LabeledPicker from '../../common/assembledComponents/LabeledPicker';
+import { CalculatorBody, CalculatorHeader, CalculatorRow } from '../../common/calculatorLayout';
+import { LabeledPicker, InputfieldUnit, ResultCard } from '../../common/assembledComponents';
 
 const RockFlourCalculator = () => {
   const [height, setHeight] = React.useState('');
@@ -64,12 +52,9 @@ const RockFlourCalculator = () => {
     const length_m = length / 100;
 
     const volume = height_m * width_m * length_m;
-
     const weight = volume * selectedDensity;
-
     const weightWithCompression = weight * 1.15;
 
-    // Set the results in state
     setVolume(volume.toFixed(2));
     setWeight(weight.toFixed(2));
     setWeightWithCompression(weightWithCompression.toFixed(2));
@@ -78,7 +63,6 @@ const RockFlourCalculator = () => {
 
 
   const handleSubmit = () => {
-    // Array of field validators
     const fields = [
       { value: height, setError: setHeightError },
       { value: width, setError: setWidthError },
@@ -112,13 +96,12 @@ const RockFlourCalculator = () => {
 
       <CalculatorHeader
         title="Stenmjöl"
-        description="
-        Ange stenstorlek samt yta i centimeter och beräkna mängd i kubikmeter och ton. 
+        description="Ange stenstorlek samt yta i centimeter och beräkna mängd i kubikmeter och ton. 
         Rekommenderad densitet är 1.4 t/m³."
       />
 
       <CalculatorRow>
-        
+
         <InputfieldUnit
           labelText="Höjd:"
           placeholder="30"
@@ -149,6 +132,7 @@ const RockFlourCalculator = () => {
           unitLabel="cm"
           error={widthError}
         />
+        
         <LabeledPicker
           labelText="Densitet:"
           selectedValue={selectedDensity}
@@ -169,10 +153,10 @@ const RockFlourCalculator = () => {
           unitLabel="cm"
           error={lengthError}
         />
-        <CellDividerLarge>
-          <SubmitButton
-            onPress={handleSubmit} />
-        </CellDividerLarge>
+
+        <SubmitButton
+          onPress={handleSubmit} />
+
 
       </CalculatorRow>
 

@@ -1,11 +1,14 @@
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { CellDividerLarge } from '../calculatorLayout';
 import React from 'react';
 
 const SubmitButton = ({ title, onPress, buttonWidth }) => {
   return (
+    <CellDividerLarge>
     <TouchableOpacity style={[styles.buttonContainer, { width: buttonWidth }]} onPress={onPress}>
       <Text style={styles.buttonText}>Beräkna</Text>
     </TouchableOpacity>
+    </CellDividerLarge>
   );
 }
 

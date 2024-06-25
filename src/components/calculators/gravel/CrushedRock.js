@@ -2,19 +2,19 @@ import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from 'react-native';
 import usePicker from '../../common/inputs/UsePicker';
-import CalculatorBody from '../../common/calculatorLayoutComponents/CalculatorBody';
-import CalculatorHeader from '../../common/calculatorLayoutComponents/CalculatorHeader';
-import CalculatorRow from '../../common/calculatorLayoutComponents/CalculatorRow';
-import CalculatorCell from '../../common/calculatorLayoutComponents/CalculatorCell';
+import CalculatorBody from '../../common/calculatorLayout/CalculatorBody';
+import CalculatorHeader from '../../common/calculatorLayout/CalculatorHeader';
+import CalculatorRow from '../../common/calculatorLayout/CalculatorRow';
+import CalculatorCell from '../../common/calculatorLayout/CalculatorCell';
 import InputFieldSmall from '../../common/inputs/InputFieldSmall'
 import SubmitButton from '../../common/buttons/SubmitButton'
 import CustomPicker from '../../common/inputs/CustomPicker';
-import ResultCard from '../../common/ResultCard';
-import CellDividerLarge from '../../common/calculatorLayoutComponents/CellDividerLarge';
-import Label from '../../common/calculatorLayoutComponents/CalculatorLabel';
-import UnitLabel from '../../common/calculatorLayoutComponents/CalculatorUnitLabel';
-import CellDividerMedium from '../../common/calculatorLayoutComponents/CellDividerMedium';
-import CellDividerSmall from '../../common/calculatorLayoutComponents/CellDividerSmall';
+import ResultCard from '../../common/assembledComponents/ResultCard';
+import CellDividerLarge from '../../common/calculatorLayout/CellDividerLarge';
+import Label from '../../common/calculatorLayout/CalculatorLabel';
+import UnitLabel from '../../common/calculatorLayout/CalculatorUnitLabel';
+import CellDividerMedium from '../../common/calculatorLayout/CellDividerMedium';
+import CellDividerSmall from '../../common/calculatorLayout/CellDividerSmall';
 
 const CrushedRockCalculator = () => {
   const [height, setHeight] = React.useState('');
@@ -191,10 +191,10 @@ const CrushedRockCalculator = () => {
         </CalculatorCell>
 
 
-        <CellDividerLarge>
+
           <SubmitButton
             onPress={handleSubmit} />
-        </CellDividerLarge>
+
 
       </CalculatorRow>
 

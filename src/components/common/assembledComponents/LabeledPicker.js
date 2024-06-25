@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalculatorBody, CalculatorCell, CalculatorLabel, CalculatorUnitLabel, CellDividerLarge, CellDividerMedium, CellDividerSmall } from '../calculatorLayoutComponents';
+import { CalculatorBody, CalculatorCell, CalculatorLabel, CalculatorUnitLabel, CellDividerLarge, CellDividerMedium, CellDividerSmall } from '../calculatorLayout';
 import InputFieldSmall from '../inputs/InputFieldSmall'; 
 import CustomPicker from '../../common/inputs/CustomPicker';
 

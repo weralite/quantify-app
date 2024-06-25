@@ -5,14 +5,14 @@ import SubmitButton from '../../common/buttons/SubmitButton'
 import InputField from '../../common/inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../common/inputs/UsePicker';
-import CalculatorBody from '../../common/calculatorLayoutComponents/CalculatorBody';
-import CalculatorHeader from '../../common/calculatorLayoutComponents/CalculatorHeader';
-import CalculatorRow from '../../common/calculatorLayoutComponents/CalculatorRow';
-import CalculatorCell from '../../common/calculatorLayoutComponents/CalculatorCell';
+import CalculatorBody from '../../common/calculatorLayout/CalculatorBody';
+import CalculatorHeader from '../../common/calculatorLayout/CalculatorHeader';
+import CalculatorRow from '../../common/calculatorLayout/CalculatorRow';
+import CalculatorCell from '../../common/calculatorLayout/CalculatorCell';
 import CustomPicker from '../../common/inputs/CustomPicker';
-import ResultCard from '../../common/ResultCard';
-import CellDividerLarge from '../../common/calculatorLayoutComponents/CellDividerLarge';
-import Label from '../../common/calculatorLayoutComponents/CalculatorLabel';
+import ResultCard from '../../common/assembledComponents/ResultCard';
+import CellDividerLarge from '../../common/calculatorLayout/CellDividerLarge';
+import Label from '../../common/calculatorLayout/CalculatorLabel';
 
 const DeckBoardCalculator = () => {
   const [area, setArea] = React.useState('');
@@ -137,11 +137,7 @@ const DeckBoardCalculator = () => {
             keyboardType="numeric" />
 
         </CellDividerLarge>
-        <CellDividerLarge>
-
           <SubmitButton onPress={handleSubmit} />
-
-        </CellDividerLarge>
       </CalculatorRow>
 
       <ResultCard
