@@ -2,18 +2,17 @@ import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text } from 'react-native';
 import usePicker from '../../common/inputs/UsePicker';
-import ComponentWrapper from '../../common/calculatorLayoutComponents/ComponentWrapper';
-import HeaderComponent from '../../common/calculatorLayoutComponents/HeaderComponent';
-import DropdownSelectRow from '../../common/calculatorLayoutComponents/DropdownSelectRow';
-import DropdownSelectCell from '../../common/calculatorLayoutComponents/DropdownSelectCell';
-import FixedLabel from '../../common/labels/InfoLabel';
+import CalculatorBody from '../../common/calculatorLayoutComponents/CalculatorBody';
+import CalculatorHeader from '../../common/calculatorLayoutComponents/CalculatorHeader';
+import CalculatorRow from '../../common/calculatorLayoutComponents/CalculatorRow';
+import CalculatorCell from '../../common/calculatorLayoutComponents/CalculatorCell';
 import InputFieldSmall from '../../common/inputs/InputFieldSmall'
 import SubmitButton from '../../common/buttons/SubmitButton'
 import CustomPicker from '../../common/inputs/CustomPicker';
 import ResultCard from '../../common/ResultCard';
-import CellDivider from '../../common/calculatorLayoutComponents/CellDivider';
-import Label from '../../common/calculatorLayoutComponents/DropdownSelectLabel';
-import UnitLabel from '../../common/labels/UnitLabel';
+import CellDividerLarge from '../../common/calculatorLayoutComponents/CellDividerLarge';
+import Label from '../../common/calculatorLayoutComponents/CalculatorLabel';
+import UnitLabel from '../../common/calculatorLayoutComponents/CalculatorUnitLabel';
 import CellDividerMedium from '../../common/calculatorLayoutComponents/CellDividerMedium';
 import CellDividerSmall from '../../common/calculatorLayoutComponents/CellDividerSmall';
 
@@ -100,19 +99,19 @@ const CrushedRockCalculator = () => {
   };
 
   return (
-    <ComponentWrapper>
+    <CalculatorBody>
 
-      <HeaderComponent
+      <CalculatorHeader
         title="Makadam"
         description="Ange stenstorlek samt yta i centimeter och beräkna mängd i kubikmeter och ton. Rekommenderad densitet är 1.4 t/m³."
       />
 
-      <DropdownSelectRow>
+      <CalculatorRow>
 
-        <DropdownSelectCell>
-          <CellDivider>
+        <CalculatorCell>
+          <CellDividerLarge>
             <Label text="Höjd:" />
-          </CellDivider>
+          </CellDividerLarge>
           <CellDividerMedium>
             <InputFieldSmall
               onChangeText={handleHeightChange}
@@ -123,30 +122,30 @@ const CrushedRockCalculator = () => {
           <CellDividerSmall>
             <UnitLabel label="cm" />
           </CellDividerSmall>
-        </DropdownSelectCell>
-        <DropdownSelectCell>
-          <CellDivider>
+        </CalculatorCell>
+        <CalculatorCell>
+          <CellDividerLarge>
             <Label text="Storlek:" />
-          </CellDivider>
+          </CellDividerLarge>
 
-          <CellDivider>
+          <CellDividerLarge>
             <CustomPicker
               selectedValue={selectedSize}
               onValueChange={handleSelectedSizeChange}
               items={sizeOptions}
               label="Ange storlek (mm)"
             />
-          </CellDivider>
-        </DropdownSelectCell>
+          </CellDividerLarge>
+        </CalculatorCell>
 
 
-      </DropdownSelectRow>
+      </CalculatorRow>
 
-      <DropdownSelectRow>
-        <DropdownSelectCell>
-          <CellDivider>
+      <CalculatorRow>
+        <CalculatorCell>
+          <CellDividerLarge>
             <Label text="Bredd:" />
-          </CellDivider>
+          </CellDividerLarge>
           <CellDividerMedium>
             <InputFieldSmall
               onChangeText={handleWidthChange}
@@ -157,28 +156,28 @@ const CrushedRockCalculator = () => {
           <CellDividerSmall>
             <UnitLabel label="cm" />
           </CellDividerSmall>
-        </DropdownSelectCell>
-        <DropdownSelectCell>
-          <CellDivider>
+        </CalculatorCell>
+        <CalculatorCell>
+          <CellDividerLarge>
             <Label text="Densitet:" />
-          </CellDivider>
+          </CellDividerLarge>
 
-          <CellDivider>
+          <CellDividerLarge>
             <CustomPicker
               selectedValue={selectedDensity}
               onValueChange={handleSelectedDensityChange}
               items={densityOptions}
               label="Ange densitet (t/m³)"
             />
-          </CellDivider>
-        </DropdownSelectCell>
-      </DropdownSelectRow>
+          </CellDividerLarge>
+        </CalculatorCell>
+      </CalculatorRow>
 
-      <DropdownSelectRow>
-        <DropdownSelectCell>
-          <CellDivider>
+      <CalculatorRow>
+        <CalculatorCell>
+          <CellDividerLarge>
             <Label text="Längd:" />
-          </CellDivider>
+          </CellDividerLarge>
           <CellDividerMedium>
             <InputFieldSmall
               onChangeText={handleLengthChange}
@@ -189,15 +188,15 @@ const CrushedRockCalculator = () => {
           <CellDividerSmall>
             <UnitLabel label="cm" />
           </CellDividerSmall>
-        </DropdownSelectCell>
+        </CalculatorCell>
 
 
-        <CellDivider>
+        <CellDividerLarge>
           <SubmitButton
             onPress={handleSubmit} />
-        </CellDivider>
+        </CellDividerLarge>
 
-      </DropdownSelectRow>
+      </CalculatorRow>
 
       <ResultCard
         showResultCard={showResultCard}
@@ -209,7 +208,7 @@ const CrushedRockCalculator = () => {
         label={`\nVolym: ${volume} m³\nVikt: ${weight} ton,\nVikt med 15% kompression: ${weightWithCompression} ton.`}
       />
 
-    </ComponentWrapper>
+    </CalculatorBody>
   )
 }
 

@@ -5,14 +5,14 @@ import SubmitButton from '../../common/buttons/SubmitButton'
 import InputField from '../../common/inputs/InputField'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../common/inputs/UsePicker';
-import ComponentWrapper from '../../common/calculatorLayoutComponents/ComponentWrapper';
-import HeaderComponent from '../../common/calculatorLayoutComponents/HeaderComponent';
-import DropdownSelectRow from '../../common/calculatorLayoutComponents/DropdownSelectRow';
-import DropdownSelectCell from '../../common/calculatorLayoutComponents/DropdownSelectCell';
+import CalculatorBody from '../../common/calculatorLayoutComponents/CalculatorBody';
+import CalculatorHeader from '../../common/calculatorLayoutComponents/CalculatorHeader';
+import CalculatorRow from '../../common/calculatorLayoutComponents/CalculatorRow';
+import CalculatorCell from '../../common/calculatorLayoutComponents/CalculatorCell';
 import CustomPicker from '../../common/inputs/CustomPicker';
 import ResultCard from '../../common/ResultCard';
-import CellDivider from '../../common/calculatorLayoutComponents/CellDivider';
-import Label from '../../common/calculatorLayoutComponents/DropdownSelectLabel';
+import CellDividerLarge from '../../common/calculatorLayoutComponents/CellDividerLarge';
+import Label from '../../common/calculatorLayoutComponents/CalculatorLabel';
 
 const DeckBoardCalculator = () => {
   const [area, setArea] = React.useState('');
@@ -84,21 +84,21 @@ const DeckBoardCalculator = () => {
   };
 
   return (
-    <ComponentWrapper>
+    <CalculatorBody>
 
-      <HeaderComponent
+      <CalculatorHeader
         title="Trallvirke"
         description="Ange virkets dimensioner och ytan som ska täckas."
       />
 
-      <DropdownSelectRow>
-        <DropdownSelectCell>
-          <CellDivider>
+      <CalculatorRow>
+        <CalculatorCell>
+          <CellDividerLarge>
 
             <Label text="Bredd:" />
 
-          </CellDivider>
-          <CellDivider>
+          </CellDividerLarge>
+          <CellDividerLarge>
 
             <CustomPicker
               selectedValue={selectedWidth}
@@ -106,16 +106,16 @@ const DeckBoardCalculator = () => {
               items={widthOptions}
               label="Ange virkets bredd" />
 
-          </CellDivider>
-        </DropdownSelectCell>
+          </CellDividerLarge>
+        </CalculatorCell>
 
-        <DropdownSelectCell>
-          <CellDivider>
+        <CalculatorCell>
+          <CellDividerLarge>
 
             <Label text="Längd:" />
 
-          </CellDivider>
-          <CellDivider>
+          </CellDividerLarge>
+          <CellDividerLarge>
 
             <CustomPicker
               selectedValue={selectedLength}
@@ -123,12 +123,12 @@ const DeckBoardCalculator = () => {
               items={lengthOptions}
               label="Ange virkets längd" />
 
-          </CellDivider>
-        </DropdownSelectCell>
-      </DropdownSelectRow>
+          </CellDividerLarge>
+        </CalculatorCell>
+      </CalculatorRow>
 
-      <DropdownSelectRow>
-        <CellDivider>
+      <CalculatorRow>
+        <CellDividerLarge>
 
           <InputField
             placeholder="M2"
@@ -136,13 +136,13 @@ const DeckBoardCalculator = () => {
             value={area}
             keyboardType="numeric" />
 
-        </CellDivider>
-        <CellDivider>
+        </CellDividerLarge>
+        <CellDividerLarge>
 
           <SubmitButton onPress={handleSubmit} />
 
-        </CellDivider>
-      </DropdownSelectRow>
+        </CellDividerLarge>
+      </CalculatorRow>
 
       <ResultCard
         showResultCard={showResultCard}
@@ -152,7 +152,7 @@ const DeckBoardCalculator = () => {
         onClose={handleReset}
         label={`Du behöver ${result} LPM inkl 10% marginal,  LPM exkl marginal)`}
       />
-    </ComponentWrapper>
+    </CalculatorBody>
   )
 }
 

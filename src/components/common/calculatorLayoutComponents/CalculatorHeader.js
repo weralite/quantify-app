@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const HeaderComponent = ({ title, description }) => {
+const CalculatorHeader = ({ title, description }) => {
   return (
     <View style={styles.componentHeader}>
       <Text style={styles.headerTitle}>{title}</Text>
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeaderComponent;
+export default CalculatorHeader;

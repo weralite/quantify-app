@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const DropdownSelectRow = ({ children }) => (
+const CalculatorRow = ({ children }) => (
   <View style={[styles.dropdownSelectRow]}>
     {children}
   </View>
 );
 
-export default DropdownSelectRow;
+export default CalculatorRow;
 
 const styles = StyleSheet.create({
     dropdownSelectRow: {

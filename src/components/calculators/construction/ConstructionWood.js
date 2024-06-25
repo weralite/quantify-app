@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import usePicker from '../../common/inputs/UsePicker';
-import ComponentWrapper from '../../common/calculatorLayoutComponents/ComponentWrapper';
-import HeaderComponent from '../../common/calculatorLayoutComponents/HeaderComponent';
-import DropdownSelectRow from '../../common/calculatorLayoutComponents/DropdownSelectRow';
-import DropdownSelectCell from '../../common/calculatorLayoutComponents/DropdownSelectCell';
+import CalculatorBody from '../../common/calculatorLayoutComponents/CalculatorBody';
+import CalculatorHeader from '../../common/calculatorLayoutComponents/CalculatorHeader';
+import CalculatorRow from '../../common/calculatorLayoutComponents/CalculatorRow';
+import CalculatorCell from '../../common/calculatorLayoutComponents/CalculatorCell';
 import InputField from '../../common/inputs/InputField'
 import SubmitButton from '../../common/buttons/SubmitButton'
 import CustomPicker from '../../common/inputs/CustomPicker';
 import ResultCard from '../../common/ResultCard';
-import CellDivider from '../../common/calculatorLayoutComponents/CellDivider';
-import Label from '../../common/calculatorLayoutComponents/DropdownSelectLabel';
+import CellDividerLarge from '../../common/calculatorLayoutComponents/CellDividerLarge';
+import Label from '../../common/calculatorLayoutComponents/CalculatorLabel';
 
 const ConstructionWoodCalculator = () => {
   const [area, setArea] = React.useState('');
@@ -94,61 +94,61 @@ const ConstructionWoodCalculator = () => {
   };
 
   return (
-    <ComponentWrapper>
+    <CalculatorBody>
 
-      <HeaderComponent
+      <CalculatorHeader
         title="Regel / Läkt"
         description="Ange yta och regelavstånd. Observera att till summan löpmeter (lm) ska längden av en regel eller läkt adderas."
       />
 
-      <DropdownSelectRow>
-        <DropdownSelectCell>
-          <CellDivider>
+      <CalculatorRow>
+        <CalculatorCell>
+          <CellDividerLarge>
             <Label text="Avstånd:" />
-          </CellDivider>
+          </CellDividerLarge>
 
-          <CellDivider>
+          <CellDividerLarge>
             <CustomPicker
               selectedValue={selectedDistance}
               onValueChange={handleSelectedDistanceChange}
               items={distanceOptions}
               label="Ange cc-avstånd"
             />
-          </CellDivider>
-        </DropdownSelectCell>
+          </CellDividerLarge>
+        </CalculatorCell>
 
 
-        <DropdownSelectCell>
-          <CellDivider>
+        <CalculatorCell>
+          <CellDividerLarge>
             <Label text="Längd:" />
-          </CellDivider>
+          </CellDividerLarge>
 
-          <CellDivider>
+          <CellDividerLarge>
             <CustomPicker
               selectedValue={selectedLength}
               onValueChange={handleSelectedLengthChange}
               items={lengthOptions}
               label="Ange virkets längd"
             />
-          </CellDivider>
-        </DropdownSelectCell>
-      </DropdownSelectRow>
+          </CellDividerLarge>
+        </CalculatorCell>
+      </CalculatorRow>
 
-      <DropdownSelectRow>
-        <CellDivider>
+      <CalculatorRow>
+        <CellDividerLarge>
           <InputField
             placeholder="M2"
             onChangeText={handleAreaChange}
             value={area}
             keyboardType="numeric" />
-        </CellDivider>
+        </CellDividerLarge>
 
-        <CellDivider>
+        <CellDividerLarge>
           <SubmitButton
             onPress={handleSubmit} />
-        </CellDivider>
+        </CellDividerLarge>
 
-      </DropdownSelectRow>
+      </CalculatorRow>
 
       <ResultCard
         showResultCard={showResultCard}
@@ -159,7 +159,7 @@ const ConstructionWoodCalculator = () => {
         label={`Du behöver ${result} löpmeter virke för att täcka en yta på ${area} m². Metervärdet inkluderar en marginal på 10% för spillvirke.`}
       />
 
-    </ComponentWrapper>
+    </CalculatorBody>
   )
 }
 

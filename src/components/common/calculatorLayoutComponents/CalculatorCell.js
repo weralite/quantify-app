@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated } from 'react-native';
 
-const DropdownSelectCell = ({ children, style, error }) => {
+const CalculatorCell = ({ children, style, error }) => {
   const borderColorAnim = useRef(new Animated.Value(0)).current; // Step 2
 
   useEffect(() => { // Step 3
@@ -42,7 +42,7 @@ const DropdownSelectCell = ({ children, style, error }) => {
   );
 };
 
-export default DropdownSelectCell;
+export default CalculatorCell;
 
 const styles = StyleSheet.create({
   dropdownSelectCell: {

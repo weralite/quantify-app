@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const ComponentWrapper = ({ children }) => (
+const CalculatorBody = ({ children }) => (
   <View style={[styles.component]}>
     {children}
   </View>
 );
 
-export default ComponentWrapper;
+export default CalculatorBody;
 
 const styles = StyleSheet.create({
   component: {
