@@ -47,6 +47,7 @@ export default CalculatorCell;
 const styles = StyleSheet.create({
   dropdownSelectCell: {
     width: '50%',
+    height: 40,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',

@@ -27,6 +27,8 @@ const Wood = () => {
       <Animated.View entering={SlideInLeft} style={[styles.screenContainer]}>
         <ConstructionWood />
         <DeckBoardCalculator />
+        <DeckBoardCalculator />
+        <DeckBoardCalculator />
       </Animated.View>
     </ScrollView>
   )
