@@ -9,7 +9,6 @@ const Gravel = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a network request that takes 2 seconds to complete
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -25,8 +24,10 @@ const Gravel = () => {
   return (
     <ScrollView>
      <Animated.View entering={SlideInLeft} style={[styles.screenContainer]}>
+
         <CrushedRock />
         <RockFlour />
+        
       </Animated.View>
     </ScrollView>
   )
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    // padding: 10,
     gap: 20,
   },
 

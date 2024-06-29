@@ -2,24 +2,29 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 import MenuButton from '../common/buttons/MenuButton';
 import Animated, { SlideInRight, SlideInLeft, SlideInDown, BounceIn } from 'react-native-reanimated';
+import WoodIcon from '../../assets/images/woody.svg';
+import Nail from '../../assets/images/nail.svg';
+import Cement from '../../assets/images/cement.svg';
+import Gravel from '../../assets/images/gravel.svg';
+import Board from '../../assets/images/board.svg';
 
 const Menu = ({ navigation }) => {
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Infästning" onPress={() => navigation.navigate('Details')} />
+        <MenuButton icon={Nail} title="Fästelement" description="Skruv, spik" onPress={() => navigation.navigate('Details')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Skivmaterial" onPress={() => navigation.navigate('Details')} />
+        <MenuButton icon={Board} title="Skivmaterial" description="Plywood, MDF, gipsskivor" onPress={() => navigation.navigate('Details')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Grusåtgång" onPress={() => navigation.navigate('Grusåtgång')} />
+        <MenuButton icon={Gravel} title="Fyllnadsmaterial" description="Makadam, stenmjöl" onPress={() => navigation.navigate('Grusåtgång')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Torrbruk" onPress={() => navigation.navigate('Details')} />
+        <MenuButton icon={Cement} title="Cementbaserat" description="Betong, flytspackel" onPress={() => navigation.navigate('Details')} />
       </Animated.View>
       <Animated.View entering={BounceIn}>
-        <MenuButton title="Virkestågång" onPress={() => navigation.navigate('Virkesåtgång')} />
+        <MenuButton icon={WoodIcon} title="Virke" description="Täckbrädor, reglar" onPress={() => navigation.navigate('Virkesåtgång')} />
       </Animated.View>
     </ScrollView>
   );

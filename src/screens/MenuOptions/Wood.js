@@ -9,7 +9,6 @@ const Wood = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a network request that takes 2 seconds to complete
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -25,10 +24,10 @@ const Wood = () => {
   return (
     <ScrollView>
       <Animated.View entering={SlideInLeft} style={[styles.screenContainer]}>
+
         <ConstructionWood />
         <DeckBoardCalculator />
-        <DeckBoardCalculator />
-        <DeckBoardCalculator />
+
       </Animated.View>
     </ScrollView>
   )

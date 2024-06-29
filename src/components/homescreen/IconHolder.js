@@ -6,7 +6,7 @@ import NoteBookIcon from '../../assets/images/note-book.svg';
 const IconHolder = ({ navigation }) => {
     return (
         <View style={[styles.iconsContainer]}>
-            <NoteBookIcon width={100} height={100} onPress={() => navigation.navigate('Anteckningar')}  />
+            <NoteBookIcon width={150} height={150} onPress={() => navigation.navigate('Anteckningar')}  />
         </View>
     )
 }
