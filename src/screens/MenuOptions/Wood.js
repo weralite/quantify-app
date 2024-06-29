@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import DeckBoardCalculator from '../../components/calculators/construction/DeckBoards'
 import ConstructionWood from '../../components/calculators/construction/ConstructionWood'
-import Animated, { SlideInRight, SlideInLeft, SlideInDown, BounceIn } from 'react-native-reanimated';
+import Animated, { SlideInRight, ZoomIn, SlideInDown, BounceIn } from 'react-native-reanimated';
 
 const Wood = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +23,7 @@ const Wood = () => {
   }
   return (
     <ScrollView>
-      <Animated.View entering={SlideInLeft} style={[styles.screenContainer]}>
+      <Animated.View entering={ZoomIn} style={[styles.screenContainer]}>
 
         <ConstructionWood />
         <DeckBoardCalculator />
