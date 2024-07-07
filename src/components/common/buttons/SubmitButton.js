@@ -21,21 +21,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFD700",
     justifyContent: 'center',
     alignItems: 'center',
-    // borderWidth: 1,
-    // borderColor: 'grey',
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //     width: 1,
-    //     height: 1,
-    // },
-    // shadowOpacity: 0.1,
-    // shadowRadius: 1,
-    
-    // elevation: 1,
+    borderRadius: 5,
+
   },
   buttonText: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 24,
+    fontFamily: 'PTSansNarrow-Bold',
+    // fontWeight: 'bold',
     color: '#000',
   },
 });
