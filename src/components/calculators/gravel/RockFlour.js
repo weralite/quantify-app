@@ -60,22 +60,20 @@ const RockFlourCalculator = () => {
     setWeightWithCompression(weightWithCompression.toFixed(2));
     setShowResultCard(true);
   };
-
-
   const handleSubmit = () => {
     const fields = [
       { value: height, setError: setHeightError },
       { value: width, setError: setWidthError },
       { value: length, setError: setLengthError }
     ];
-
+  
     const isValid = validateFields(fields);
-
+    
     if (isValid) {
       calculateResult();
     }
   };
-
+  
   const handleReset = () => {
     setShowResultCard(false);
   };

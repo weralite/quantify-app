@@ -58,13 +58,9 @@ const CrushedRockCalculator = () => {
     const width_m = width / 100;
     const length_m = length / 100;
 
-    // Calculate volume in cubic meters
+
     const volume = height_m * width_m * length_m;
-
-    // Calculate weight
     const weight = volume * selectedDensity;
-
-    // Calculate weight with 15% compression
     const weightWithCompression = weight * 1.15;
 
     // Set the results in state

@@ -70,23 +70,23 @@ const handleSave = () => {
 
 const styles = StyleSheet.create({
   resultCard: {
-    width: '90%',
+    width: '100%',
     display: 'flex',
     opacity: 0,
-    flexDirection: 'column',
+    // flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f9f9f9',
     minHeight: 150,
   },
 
   innerCard: {
-    width: '100%',
+    width: '90%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     borderRadius: 5,
     alignItems: 'center',
-    backgroundColor: '#f9f9f9',
     padding: 10,
     gap: 10,
     minHeight: 120,

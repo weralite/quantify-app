@@ -33,10 +33,10 @@ const styles = StyleSheet.create({
     margin: 4,
     backgroundColor: "#FFD700",
     height: 80,
-    width: '95%',
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderRadius: 20,
+    borderRadius: 50,
     paddingLeft: 15,
     paddingRight: 15,
 

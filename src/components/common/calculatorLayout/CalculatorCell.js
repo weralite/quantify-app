@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'gray',
-    borderRadius: 5,
+    borderRadius: 2,
   },
 });

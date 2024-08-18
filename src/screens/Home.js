@@ -26,6 +26,7 @@ function HomeScreen({ navigation }) {
       <Header />
       <IconHolder navigation={navigation} />
       <Menu navigation={navigation} />
+      <Header />
     </SafeAreaView>
   );
 }

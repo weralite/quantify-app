@@ -6,7 +6,7 @@ const SubmitButton = ({ title, onPress, buttonWidth }) => {
   return (
     <CellDividerLarge>
     <TouchableOpacity style={[styles.buttonContainer, { width: buttonWidth }]} onPress={onPress}>
-      <Text style={styles.buttonText}>Beräkna</Text>
+      <Text style={styles.buttonText}>VISA</Text>
     </TouchableOpacity>
     </CellDividerLarge>
   );
@@ -21,11 +21,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFD700",
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
+    borderRadius: 2,
 
   },
   buttonText: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: 'PTSansNarrow-Bold',
     // fontWeight: 'bold',
     color: '#000',
