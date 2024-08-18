@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, ActivityIndicator, View } from 'react-native';
+import { StyleSheet, SafeAreaView, ActivityIndicator, View } from 'react-native';
 import Header from '../components/homescreen/Header';
 import Menu from '../components/homescreen/Menu';
 import IconHolder from '../components/homescreen/IconHolder';
@@ -22,13 +22,26 @@ function HomeScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView style={{ gap: 60 }}>
-      <Header />
-      <IconHolder navigation={navigation} />
-      <Menu navigation={navigation} />
-      <Header />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.homeScreen}>
+        <Header />
+        <IconHolder navigation={navigation} />
+        <Menu navigation={navigation} />
+      </View>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, // Ensures SafeAreaView takes up the full height of the screen
+  },
+  homeScreen: {
+    flex: 1, // Ensures homeScreen takes up all available height within SafeAreaView
+    flexDirection: 'column',
+    justifyContent: 'space-between', // Creates space between the components
+    alignItems: 'center', // Centers children horizontally
+  },
+})
 
 export default HomeScreen;

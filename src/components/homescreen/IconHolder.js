@@ -6,7 +6,7 @@ import NoteBookIcon from '../../assets/images/note-book.svg';
 const IconHolder = ({ navigation }) => {
     return (
         <View style={[styles.iconsContainer]}>
-            <NoteBookIcon width={150} height={150} onPress={() => navigation.navigate('Anteckningar')}  />
+            <NoteBookIcon width={100} height={150} onPress={() => navigation.navigate('Anteckningar')} />
         </View>
     )
 }
@@ -18,6 +18,15 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        margin: 20,
+        backgroundColor: '#fff',
+        width: 130,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        // Elevation for Android
+        elevation: 5,
+
     },
 })

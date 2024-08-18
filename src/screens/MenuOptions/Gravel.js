@@ -42,7 +42,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 20,
+    gap: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
 
   ActivityIndicator: {

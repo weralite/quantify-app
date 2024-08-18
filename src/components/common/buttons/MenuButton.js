@@ -4,49 +4,60 @@ import Arrow from '../../../assets/images/arrowalt.svg';
 
 const MenuButton = ({ description, title, onPress, icon: Icon }) => {
   return (
-    <View style={[styles.menuContainer]}>
+
     <TouchableOpacity style={[styles.buttonContainer]} onPress={onPress}>
-      <View style={[styles.containerLeft]}>
+      <View style={[styles.iconContainer]}>
       {Icon ? <Icon /> : null}
-      <View>
+       </View>
+       <View style={styles.boxbox}>
+      <View style={styles.textContainer}>
       <Text style={styles.buttonTitle}>{title}</Text>
       <Text style={styles.buttonDescription}>{description}</Text>
       </View>
-      </View>
       <Arrow />
+      </View>
     </TouchableOpacity>
-    </View>
   );
 }
 
 export default MenuButton;
 
 const styles = StyleSheet.create({
-  menuContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   buttonContainer: {
     alignItems: 'center',
-    margin: 4,
-    backgroundColor: "#FFD700",
+    backgroundColor: "#FFF",
     height: 80,
-    width: '90%',
+    width: '100%',
+    
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderRadius: 50,
-    paddingLeft: 15,
-    paddingRight: 15,
-
+    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
   },
 
-  containerLeft: {
+  iconContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 15,
+    backgroundColor: "#FFD700",
+    height: '100%',
+    width: '25%',
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+  },
+  // textContainer: {
+  //   justifyContent: 'flex-start',
+  // },
+
+  boxbox: {
+    width: '75%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
   },
 
   buttonTitle: {
