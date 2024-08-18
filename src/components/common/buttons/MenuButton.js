@@ -7,14 +7,14 @@ const MenuButton = ({ description, title, onPress, icon: Icon }) => {
 
     <TouchableOpacity style={[styles.buttonContainer]} onPress={onPress}>
       <View style={[styles.iconContainer]}>
-      {Icon ? <Icon /> : null}
-       </View>
-       <View style={styles.boxbox}>
-      <View style={styles.textContainer}>
-      <Text style={styles.buttonTitle}>{title}</Text>
-      <Text style={styles.buttonDescription}>{description}</Text>
+        {Icon ? <Icon /> : null}
       </View>
-      <Arrow />
+      <View style={styles.boxbox}>
+        <View style={styles.textContainer}>
+          <Text style={styles.buttonTitle}>{title}</Text>
+          <Text style={styles.buttonDescription}>{description}</Text>
+        </View>
+        {/* <Arrow /> */}
       </View>
     </TouchableOpacity>
   );
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     height: 80,
     width: '100%',
-    
+
     flexDirection: 'row',
-    borderRadius: 5,
+    borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFD700",
     height: '100%',
     width: '25%',
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
   },
   // textContainer: {
   //   justifyContent: 'flex-start',
@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
+  },
+
+  textContainer:{
+    paddingLeft: 10,
   },
 
   buttonTitle: {
