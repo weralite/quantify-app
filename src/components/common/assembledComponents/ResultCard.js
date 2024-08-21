@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     // flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#fff',
     minHeight: 150,
   },
 
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
 
   cardText: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'Arial',
     color: '#000',
   },

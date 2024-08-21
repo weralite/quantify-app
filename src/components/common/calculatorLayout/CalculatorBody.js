@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   component: {
     width: '95%',
     display: 'flex',
-backgroundColor: '#fff',
+backgroundColor: '#FFFFFF',
     flexDirection: 'column',
     alignItems: 'center',
     overflow: 'hidden',

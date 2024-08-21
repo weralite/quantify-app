@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import Notes from '../../screens/Notes';
+import Notes from '../../screens/NoteScreen';
 import { version } from '../../../package.json';
 
 const Header = () => {

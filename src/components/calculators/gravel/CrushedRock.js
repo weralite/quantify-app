@@ -25,7 +25,7 @@ const CrushedRockCalculator = () => {
   const [weightWithCompression, setWeightWithCompression] = React.useState(0);
   const [showResultCard, setShowResultCard] = useState(false);
 
-  const densityOptions = [1.25, 1.35, 1.40, 1.55
+  const densityOptions = [1.25, 1.35, 1.40, 1.55, 1.70
   ];
 
   const sizeOptions = [

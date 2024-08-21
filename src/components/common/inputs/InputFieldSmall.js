@@ -41,7 +41,7 @@ const InputFieldSmall = ({ placeholder, onChangeText, value, keyboardType, style
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    fontSize: 20,
+    fontSize: 18,
     color: 'black',
     textAlign: 'center',
     padding: 0,

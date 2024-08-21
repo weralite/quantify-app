@@ -3,27 +3,27 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import CrushedRock from '../../components/calculators/gravel/CrushedRock'
 import RockFlour from '../../components/calculators/gravel/RockFlour'
-import Animated, { SlideInRight, SlideInLeft, ZoomIn, FadeIn } from 'react-native-reanimated';
+import Animated, { StretchInX, FadeInUp, ZoomIn, FadeIn } from 'react-native-reanimated';
 
 const Gravel = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 500);
+  // }, []);
 
-  if (isLoading) {
-    return (
-      <View style={styles.ActivityIndicator}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <View style={styles.ActivityIndicator}>
+  //       <ActivityIndicator size="large" color="#0000ff" />
+  //     </View>
+  //   );
+  // }
   return (
     <ScrollView>
-     <Animated.View entering={FadeIn} style={[styles.screenContainer]}>
+     <Animated.View style={[styles.screenContainer]}>
 
         <CrushedRock />
         <RockFlour />

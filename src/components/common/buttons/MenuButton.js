@@ -5,7 +5,7 @@ import Arrow from '../../../assets/images/arrowalt.svg';
 const MenuButton = ({ description, title, onPress, icon: Icon }) => {
   return (
 
-    <TouchableOpacity style={[styles.buttonContainer]} onPress={onPress}>
+    <TouchableOpacity style={[styles.buttonContainer]} onPress={(event) => onPress(event)}>
       <View style={[styles.iconContainer]}>
         {Icon ? <Icon /> : null}
       </View>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: '100%',
 
     flexDirection: 'row',
-    borderRadius: 20,
+    borderRadius: 50,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFD700",
     height: '100%',
     width: '25%',
-    borderTopLeftRadius: 20,
-    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 50,
+    borderBottomLeftRadius: 50,
   },
   // textContainer: {
   //   justifyContent: 'flex-start',
